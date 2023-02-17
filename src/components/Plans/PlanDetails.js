@@ -72,7 +72,7 @@ const PlanDetails = () => {
               planData?.map((val, index) => {
                 return (
                   <tr>
-                    <th scope="row">1</th>
+                    <th scope="row">{index + 1}</th>
                     <td>{val.price}</td>
                     <td>{val.services?.map((value, idx) => {
                       return (

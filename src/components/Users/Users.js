@@ -4,6 +4,7 @@ import deleteImg from '../../components/images/bin.png';
 import editImg from '../../components/images/edit.png';
 import Sidebar from '../Sidebar';
 import logoutIcon from '../../Icons/logout.png'
+import rechargeIcon from '../../Icons/payment.png'
 import axios from 'axios'
 import '../Users/Users.css'
 
@@ -65,6 +66,7 @@ const Users = () => {
   const handleFilter = () => {
     axios.post('http://localhost:3031/admincrud/getspecificuser', filterData).then((res) => {
       setData(res.data)
+      // console.log(res.data)
     }).catch((err) => {
       console.log(err)
     })
@@ -131,6 +133,7 @@ const Users = () => {
               <th scope="col">Coins</th>
               <th scope="col">Recharge On</th>
               <th scope="col">Expires On</th>
+              <th scope="col">Recharge User</th>
               <th scope="col">Update</th>
               <th scope="col">Delete</th>
             </tr>
@@ -146,6 +149,9 @@ const Users = () => {
                     <td>{value.coins}</td>
                     <td>{handleDate(value.rechargeDate)}</td>
                     <td>{handleDate(value.rechargExpireDate)}</td>
+                    <td>
+                      <Link to="/rechargeuser" state={{ email: value.email }}><img src={rechargeIcon} /></Link>
+                    </td>
                     <td>
                       <Link to="/updateuser" state={{ id: value._id }}><img src={editImg} /></Link>
                     </td>

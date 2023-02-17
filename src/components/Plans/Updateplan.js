@@ -80,7 +80,7 @@ const Createplan = () => {
             <h4 className='mb-5'>Update Plan</h4>
 
             <div className="mb-4">
-              <input type="text" name='price' placeholder='Update Price of Plan' value={singleplan.price} className="form-control" />
+              <input type="text" name='price' placeholder='Update Plan Name With Price (Example: Management Plan - 12999/- )' value={singleplan.price} className="form-control" />
             </div>
 
             <div className="mb-4">
@@ -108,7 +108,7 @@ const Createplan = () => {
             </div>
 
             <div className="mb-4">
-              <input type="number" name='expiresinMonths' value={singleplan.expiresinMonths} onChange={(e) => { setSingleplan({ ...singleplan, expiresinMonths: e.target.value }) }} placeholder='Update Duration: (Example: 6)' className="form-control" />
+              <input type="number" name='expiresinMonths' value={singleplan.expiresinMonths} onChange={(e) => { setSingleplan({ ...singleplan, expiresinMonths: e.target.value }) }} placeholder='Update Duration in Months: (Example: 6)' className="form-control" />
             </div>
 
             <div className="form-check mb-4">

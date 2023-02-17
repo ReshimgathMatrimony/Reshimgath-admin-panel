@@ -21,9 +21,9 @@ const Sidebar = () => {
             <li className='nav-item w-100'>
               <Link to='/users' className='nav-link text-dark  mt-3'>All Users</Link>
             </li>
-            {/* <li className='nav-item w-100'>
-              <Link to='/unpaiduser' className='nav-link text-dark  mt-3'>Unpaid Users</Link>
-            </li> */}
+            <li className='nav-item w-100'>
+              <Link to='/rechargedone' className='nav-link text-dark  mt-3'>Recharge History</Link>
+            </li>
             <li className='nav-item w-100'>
               <Link to='/successstories' className='nav-link text-dark  mt-3'>Success Stories</Link>
             </li>

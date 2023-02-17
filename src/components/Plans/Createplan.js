@@ -66,7 +66,7 @@ const Createplan = () => {
             <h4 className='mb-5'>Add New Plan</h4>
 
             <div className="mb-4">
-              <input type="text" name='price' placeholder='Price of Plan' className="form-control" />
+              <input type="text" name='price' placeholder='Plan Name With Price (Example: Management Plan - 12999/-)' className="form-control" />
             </div>
 
             <div className="mb-4">
@@ -94,7 +94,7 @@ const Createplan = () => {
             </div>
 
             <div className="mb-4">
-              <input type="number" name='expiresinMonths' placeholder='Duration: (Example: 6)' className="form-control" aria-describedby="emailHelp" />
+              <input type="number" name='expiresinMonths' placeholder='Duration in Months: (Example: 6)' className="form-control" aria-describedby="emailHelp" />
             </div>
 
             <div className="form-check mb-4">

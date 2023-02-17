@@ -20,6 +20,7 @@ import Updateplan from './components/Plans/Updateplan';
 import Unpaiduser from './components/Unpaiduser';
 import Dashboard from './components/Dashboard'
 import Logout from './components/Auth/Logout';
+import RechargeHistory from './components/Plans/RechargeHistory';
 
 function App() {
     // const [loggedin, setLoggedin] = useState(false);
@@ -54,6 +55,8 @@ function App() {
                                 <Route path="/plandetails" element={<PlanDetails />} />
                                 <Route path="/createplan" element={<Createplan />} />
                                 <Route path="/updateplan" element={<Updateplan />} />
+                                <Route path="/rechargedone" element={<RechargeHistory />} />
+
 
                                 {/* Routes for sendmails */}
                                 <Route path="/sendemails" element={<SendEmail />} />
