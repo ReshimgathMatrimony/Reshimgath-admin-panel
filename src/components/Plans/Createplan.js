@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Sidebar from '../Sidebar';
 import logoutIcon from '../../Icons/logout.png'
 import crossIcon from '../../Icons/cross.png'
+
 const Createplan = () => {
 
   const navigate = useNavigate()
@@ -22,8 +23,9 @@ const Createplan = () => {
     const formdata = new FormData(e.target);
     const data = Object.fromEntries(formdata.entries());
     const payLoad = { ...data, services: JSON.stringify(finalBucket) }
+    console.log(payLoad)
     axios.post('http://localhost:3031/admincrud/createplan', payLoad).then((res) => {
-      // console.log(res.data)
+      console.log(res.data)
     }).catch((err) => {
       console.log(err)
     })
@@ -60,7 +62,7 @@ const Createplan = () => {
 
         <div classNameNameName="container">
 
-          <form className='mt-5 createplan_div p-3' onSubmit={handleSubmit}>
+          <form className='mt-5 createplan_div p-3' onSubmit={handleSubmit} autoComplete="off">
             <h4 className='mb-5'>Add New Plan</h4>
 
             <div className="mb-4">
@@ -92,7 +94,7 @@ const Createplan = () => {
             </div>
 
             <div className="mb-4">
-              <input type="number" name='expireinMonths' placeholder='Duration: (Example: 6)' className="form-control" aria-describedby="emailHelp" />
+              <input type="number" name='expiresinMonths' placeholder='Duration: (Example: 6)' className="form-control" aria-describedby="emailHelp" />
             </div>
 
             <div className="form-check mb-4">

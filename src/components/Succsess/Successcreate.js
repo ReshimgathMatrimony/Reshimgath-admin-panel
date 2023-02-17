@@ -33,7 +33,7 @@ const Successcreate = () => {
     const data = Object.fromEntries(formdata.entries());
     // console.log(data)
     const payLoad = { ...data, image: await imageFormator(data.image) }
-    // console.log(payLoad);
+    console.log(payLoad);
 
     axios.post('http://localhost:3031/admincrud/addstories', payLoad, {
       headers: {

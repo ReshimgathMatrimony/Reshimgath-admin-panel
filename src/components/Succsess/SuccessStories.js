@@ -16,7 +16,6 @@ const SuccessStories = () => {
       axios.get("http://localhost:3031/admincrud/getstories")
         .then((res) => {
           setSuccess(res.data)
-          // console.log(res.data);
         })
         .catch((err) => {
           console.log(err);
@@ -40,6 +39,13 @@ const SuccessStories = () => {
       })
     }
   }
+
+  //Formating marriage date
+  const changeDate = (takedate) => {
+    const mydate = new Date(takedate)
+    return `${mydate.toLocaleDateString()}`
+  }
+
   return (
     <>
       <div className="col-lg-3">
@@ -60,6 +66,7 @@ const SuccessStories = () => {
             <tr>
               <th scope="col">Sr.No</th>
               <th scope="col">Bride & Groom</th>
+              <th scope="col">Date Of Marriage</th>
               <th scope="col">Image</th>
               <th scope="col">Update</th>
               <th scope="col">Delete</th>
@@ -72,6 +79,7 @@ const SuccessStories = () => {
                   <tr className='text-center'>
                     <td>{id + 1}</td>
                     <td>{value.men} & {value.women}</td>
+                    <td>{changeDate(value.date)}</td>
                     <td><img src={value.image} alt="image" height="50px" width="70px" /></td>
                     <td><Link to="/successupdate" state={{ id: value._id }}><img src={editImg} /></Link></td>
                     <td><button className='btn' onClick={() => { handleDeleteStory(value._id) }}><img src={deleteImg} /></button></td>

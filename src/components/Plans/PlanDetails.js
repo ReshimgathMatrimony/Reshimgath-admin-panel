@@ -10,10 +10,12 @@ const PlanDetails = () => {
   const navigate = useNavigate()
   const [planData, setPlanData] = useState([])
 
+  const [status, setStatus] = useState(false)
+
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
       axios.get('http://localhost:3031/admincrud/getallplans').then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         setPlanData(res.data)
       }).catch((err) => {
         console.log(err)
@@ -23,7 +25,20 @@ const PlanDetails = () => {
       navigate('/login')
     }
 
-  }, [])
+  }, [status])
+
+  // ****************** Service Delete **************
+  const handleServiceDelete = (id) => {
+    const res = window.confirm('Are You Really Want to Delete..?')
+    if (res) {
+      axios.post('http://localhost:3031/admincrud/deleteplan', { id }).then((res) => {
+        // console.log(res.data)
+        setStatus(!status)
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
+  }
   return (
     <>
       <div className="col-lg-3">
@@ -43,20 +58,36 @@ const PlanDetails = () => {
           <thead>
             <tr>
               <th scope="col">Sr.No</th>
-              <th scope="col">Plan</th>
-              <th scope="col">Rs</th>
+              <th scope="col">Price</th>
+              <th scope="col">Services Included</th>
+              <th scope="col">Mediator</th>
+              <th scope="col">Profile View Count</th>
+              <th scope="col">Expiry (In Months)</th>
               <th scope="col">Update</th>
               <th scope="col">Delete</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>@mdo</td>
-              <td><img src={editImg} /></td>
-              <td><img src={deleteImg} /></td>
-            </tr>
+            {
+              planData?.map((val, index) => {
+                return (
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>{val.price}</td>
+                    <td>{val.services?.map((value, idx) => {
+                      return (
+                        <span>{idx + 1}. {value} <br /></span>
+                      )
+                    })}</td>
+                    <td>{val.mediator ? ('Available') : ('Not Available')}</td>
+                    <td>{val.contact_count}</td>
+                    <td>{val.expiresinMonths}</td>
+                    <td><Link to="/updateplan" state={{ id: val._id }}><img src={editImg} /></Link></td>
+                    <td><button className='btn' onClick={() => { handleServiceDelete(val._id) }}><img src={deleteImg} /></button></td>
+                  </tr>
+                )
+              })
+            }
           </tbody>
         </table>
       </div>

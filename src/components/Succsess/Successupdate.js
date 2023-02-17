@@ -4,37 +4,37 @@ import Sidebar from '../Sidebar';
 import './Successupdate.css';
 import logoutIcon from "../../Icons/logout.png"
 import axios from 'axios'
-import crossIcon from '../../Icons/cross.png'
+
 const Successupdate = () => {
+
   const location = useLocation()
-
   const [storyData, setStoryData] = useState({})
-
-  // console.log(location.state.id)
-
-  const handleDate = (date) => {
-    const mydate = new Date(date)
-    const newdate = mydate.toLocaleDateString(('zh-Hans-CN')).split('/')
-    const convertedDate = newdate.join('-')
-
-    if (convertedDate === '1/1/1970') {
-      return '0'
-    } else {
-      return convertedDate
-    }
-  }
-
   const [dateUpdate, setDateUpdate] = useState('')
   const [prevImg, setPrevImg] = useState('')
-
   const navigate = useNavigate()
+
+  const newfunction = (sample) => {
+    return new Promise((resolve, reject) => {
+      resolve(sample.padStart(2, 0))
+    })
+  }
+
+  const handleDate = async (date) => {
+    const mydate = new Date(date)
+    let d1 = ''
+    let d2 = ''
+    const postmortam = mydate.toLocaleDateString().split('/')
+    d1 = await newfunction(postmortam[0])
+    d2 = await newfunction(postmortam[1])
+    setDateUpdate(`${postmortam[2]}-${d1}-${d2}`)
+  }
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
       axios.post('http://localhost:3031/admincrud/getonestory', { id: location.state.id }).then((res) => {
         setStoryData(res.data)
         setDateUpdate(handleDate(res.data.date))
         setPrevImg(res.data.image)
-        // console.log(res.data)
+
       }).catch((err) => {
         console.log(err)
       })
@@ -68,7 +68,7 @@ const Successupdate = () => {
         "Content-Type": 'application/json'
       }
     }).then((res) => {
-      // console.log(res.data)
+      console.log(res.data)
     }).catch((err) => {
       console.log(err)
     })
