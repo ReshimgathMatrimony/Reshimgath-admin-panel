@@ -8,18 +8,26 @@ import checkIcon from '../../Icons/checked.png'
 import coinIcon from '../../Icons/star.png'
 import timerIcon from '../../Icons/timer.png'
 import supportIcon from '../../Icons/support.png'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const RechargeUser = () => {
   const navigate = useNavigate()
   const location = useLocation()
-  // console.log(location.state.email)
+  // console.log(location.state.rechargExpireDate)
+  const notify = (p, msg) => p ? toast.success(msg) : toast.error(msg);
+
+
   const [plan, setPlan] = useState({})
   const [data, setData] = useState([])
+
+  // console.log(finalRemain)
+
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
 
       axios.get('http://localhost:3031/admincrud/getplannamesonly').then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         setData(res.data)
       }).catch((err) => {
         console.log(err)
@@ -42,16 +50,39 @@ const RechargeUser = () => {
     }
   }
 
+  const changeDate = () => {
+    const mydate = new Date(location.state.rechargExpireDate)
+    if (mydate.toLocaleDateString() === '1/1/1970') {
+      return 0
+    } else {
+      const prevDate = new Date(location.state.rechargExpireDate)
+      const date = new Date()
+
+      const convertedPrevDate = prevDate.getTime() - date.getTime()
+      const remain = convertedPrevDate / (1000 * 3600 * 24)
+      const finalRemain = Math.round(remain)
+      return finalRemain
+    }
+  }
+
   //Recharging User
   const handleRecharge = () => {
-    window.confirm("Do you really want to recharge this user?")
-    const payLoad = { email: location.state.email, coins: plan.contact_count, plan: plan.price, days: (plan.expiresinMonths * 30) }
-    // console.log(payLoad)
-    axios.post('http://localhost:3031/admincrud/rechargeuser', payLoad).then((res) => {
-      console.log(res.data)
-    }).catch((err) => {
-      console.log(err)
-    })
+    const res = window.confirm("Do you really want to recharge this user?")
+    if (res) {
+      const payLoad = { email: location.state.email, coins: plan.contact_count + location.state.coins, plan: plan.price, days: changeDate() + plan.expiresinMonths * 30, details: JSON.stringify(plan.services), firstname: location.state.firstname, }
+      // console.log(payLoad)
+      axios.post('http://localhost:3031/admincrud/rechargeuser', payLoad).then((res) => {
+        // console.log(res.data)
+        notify(1, "User Recharge Done..!")
+        setTimeout(() => {
+          navigate(-1)
+        }, 2000);
+      }).catch((err) => {
+        // console.log(err)
+        notify(0, "oops..Sometthing went wrong..!")
+      })
+    }
+
   }
   return (
     <>
@@ -66,7 +97,7 @@ const RechargeUser = () => {
         </div>
 
         <h4 className='text-center mt-4 mb-4'>Recharge User</h4>
-
+        <ToastContainer position="bottom-left" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
         <div className="row justify-content-center mb-4">
           <div className="col-lg-10 recharge_user_mail"><h5 className='text-center'>User Mail ID : {location.state.email}</h5></div>
 
@@ -90,7 +121,9 @@ const RechargeUser = () => {
             Object.keys(plan).length !== 0 ? (<div className="col-lg-6 mt-4 includes_main_div">
 
               <h5 className='m-auto'>{plan.price}</h5>
-              <h6><img src={coinIcon} alt="img" /> Can View Contact Details of {plan.contact_count} Profiles.</h6>
+
+              <h6><img src={coinIcon} alt="img" /> Can View Contact Details of Total: {plan.contact_count}  {location.state.coins === 0 ? ('') : (<span> + {location.state.coins} = {location.state.coins + plan.contact_count} </span>)} Profiles.</h6>
+
               <h5><img src={timerIcon} alt="img" /> {plan.expiresinMonths} Months</h5>
               <h5><img src={supportIcon} alt="img" /> Service Person {plan.mediator ? ('Available') : ('Not Available')}</h5>
               <div>

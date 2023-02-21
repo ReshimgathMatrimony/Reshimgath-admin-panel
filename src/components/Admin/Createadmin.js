@@ -4,7 +4,11 @@ import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom';
 import Sidebar from '../Sidebar';
 import logoutIcon from '../../Icons/logout.png'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Createadmin = () => {
+    const notify = (p, msg) => p ? toast.success(msg) : toast.error(msg);
     const navigate = useNavigate()
     useEffect(() => {
         if (localStorage.getItem('accesstoken')) {
@@ -25,10 +29,14 @@ const Createadmin = () => {
                 "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNAZ21haWwuY29tIiwicm9vdCI6dHJ1ZSwiaWF0IjoxNjc2MTAwNTkxfQ.LzxSzuv2VSirs7mFNEbU7v_AFj4yM9mfVQC-H-H8wTo'
             }
         }).then((res) => {
-            console.log(res.data)
+            notify(1, "Admin Created Successfully..!")
+            // console.log(res.data)
         }).catch((err) => {
-            console.log(err)
+            // console.log(err)
+            notify(0, "Oops..Something went wrong!")
         })
+        e.target.email.value = "";
+        e.target.password.value = ""
     }
 
     return (
@@ -45,6 +53,7 @@ const Createadmin = () => {
                     </div>
                     <h3 className='mt-5 fw-bold'>Create New Admin</h3>
                     <form className='mt-5 createadmin_div p-3' onSubmit={handleSubmit} autoComplete="off">
+                        <ToastContainer position="bottom-left" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
                         <div className="mt-4 mb-3">
                             <input name='email' type="email" placeholder='Admin Email' className="form-control" />
                         </div>

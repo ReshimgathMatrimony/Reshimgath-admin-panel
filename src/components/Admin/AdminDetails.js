@@ -6,28 +6,30 @@ import adminIcon from "../../Icons/admin.png"
 import masterAdminIcon from "../../Icons/masterAdmin.png"
 import Sidebar from '../Sidebar';
 import logoutIcon from '../../Icons/logout.png'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const AdminDetails = () => {
+
+  const notify = (p, msg) => p ? toast.success(msg) : toast.error(msg);
+  const [admin, setAdmin] = useState([]);
+  const [status, setStatus] = useState(false)
   const navigate = useNavigate()
+
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
+      axios.get("http://localhost:3031/admincrud/getalladmins")
+        .then((res) => {
+          setAdmin(res.data)
+        })
+        .catch((err) => {
+          console.log(err);
+        })
     }
     else {
       navigate('/login')
     }
 
-  }, [])
-
-  const [admin, setAdmin] = useState([]);
-  const [status, setStatus] = useState(false)
-  useEffect(() => {
-    axios.get("http://localhost:3031/admincrud/getalladmins")
-      .then((res) => {
-        setAdmin(res.data)
-      })
-      .catch((err) => {
-        console.log(err);
-      })
   }, [status])
 
   const deleteUser = (id) => {
@@ -44,15 +46,14 @@ const AdminDetails = () => {
           }
         }).then((res) => {
           setStatus(!status)
+          notify(1, "Admin Deleted Successfully..!")
         }).catch((err) => {
-          console.log(err)
+          // console.log(err)
+          notify(0, "Oops...Something went wrong!")
         })
       }
 
     }
-
-
-
   }
 
 
@@ -60,7 +61,6 @@ const AdminDetails = () => {
     <>
       <div className="col-lg-3">
         <Sidebar />
-
       </div>
 
       <div className="col-lg-9">
@@ -73,6 +73,7 @@ const AdminDetails = () => {
         <div className='d-grid gap-2 d-md-flex justify-content-md-end '>
           <button className='btn btn-primary me-md-2 mt-3 mb-3 createAdminBtn'><Link className='text-white text-decoration-none' to="/createadmin">Create New Admin</Link></button>
         </div>
+        <ToastContainer position="bottom-left" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
         <table className="table">
           <thead>
             <tr>

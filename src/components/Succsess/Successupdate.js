@@ -4,9 +4,11 @@ import Sidebar from '../Sidebar';
 import './Successupdate.css';
 import logoutIcon from "../../Icons/logout.png"
 import axios from 'axios'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Successupdate = () => {
-
+  const notify = (p, msg) => p ? toast.success(msg) : toast.error(msg);
   const location = useLocation()
   const [storyData, setStoryData] = useState({})
   const [dateUpdate, setDateUpdate] = useState('')
@@ -68,9 +70,11 @@ const Successupdate = () => {
         "Content-Type": 'application/json'
       }
     }).then((res) => {
-      console.log(res.data)
+      // console.log(res.data)
+      notify(1, "Success Story Updated..!")
     }).catch((err) => {
-      console.log(err)
+      // console.log(err)
+      notify(0, "Oops..Something went wrong..!")
     })
 
   }
@@ -89,8 +93,8 @@ const Successupdate = () => {
 
         <div className="container">
           <form className='mt-5 p-2' onSubmit={handleSubmit}>
-            <h3 className='mb-3'>Update Story</h3>
-
+            <h3 className='mb-3'>Update Success Story</h3>
+            <ToastContainer position="bottom-left" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
             <div className="row">
               <div className="col-lg-6 mb-3">
                 <p className='d-flex fw-bold mt-2'>Update Name of Bride</p>
@@ -118,7 +122,7 @@ const Successupdate = () => {
               <input type="date" name='date' value={dateUpdate} onChange={(e) => { setDateUpdate(e.target.value) }} className="form-control" />
             </div>
 
-            <button type="submit" className="btn createAdminBtn mt-4">Update Details</button>
+            <button type="submit" className="btn createAdminBtn mt-4">Update Details Now</button>
           </form>
         </div>
       </div>

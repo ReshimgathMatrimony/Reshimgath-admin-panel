@@ -5,7 +5,12 @@ import editImg from '../../components/images/edit.png';
 import axios from 'axios';
 import Sidebar from '../Sidebar';
 import logoutIcon from '../../Icons/logout.png'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+
 const SuccessStories = () => {
+  const notify = (p, msg) => p ? toast.success(msg) : toast.error(msg);
+
   const [status, setStatus] = useState(false)
   const [success, setSuccess] = useState([]);
 
@@ -34,8 +39,10 @@ const SuccessStories = () => {
     if (res) {
       axios.post('http://localhost:3031/admincrud/deletestory', { id }).then((res) => {
         setStatus(!status)
+        notify(1, "Story Deleted Successfully..!")
       }).catch((err) => {
-        console.log(err)
+        // console.log(err)
+        notify(0, "Oops..Something went wrong!")
       })
     }
   }
@@ -58,6 +65,7 @@ const SuccessStories = () => {
           </Link>
         </div>
         <h4 className='text-center mt-5'>Success Stories</h4>
+        <ToastContainer position="bottom-left" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
         <div className='d-grid gap-2 d-md-flex justify-content-md-end '>
           <button className='btn createAdminBtn me-md-2 mt-3 mb-3 '><Link className='text-white text-decoration-none' to="/successcreate">Add New Story</Link></button>
         </div>

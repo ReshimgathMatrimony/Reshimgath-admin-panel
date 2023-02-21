@@ -19,10 +19,11 @@ const LoginForm = () => {
             }
         }).then((res) => {
             localStorage.setItem('accesstoken', res.data.accesstoken)
-            console.log(res.data)
+            // console.log(res.data)
             navigate('/')
         }).catch((err) => {
-            console.log(err)
+            // console.log(err)
+
             setShowError(true)
 
         })

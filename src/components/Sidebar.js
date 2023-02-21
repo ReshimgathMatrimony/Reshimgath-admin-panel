@@ -30,9 +30,9 @@ const Sidebar = () => {
             <li className='nav-item w-100'>
               <Link to='/plandetails' className='nav-link text-dark mt-3'>Plan Details</Link>
             </li>
-            <li className='nav-item w-100'>
+            {/* <li className='nav-item w-100'>
               <Link to='/sendemails' className='nav-link text-dark mt-3'>Send Emails</Link>
-            </li>
+            </li> */}
             <li className='nav-item w-100'>
               <Link to='/customerqueries' className='nav-link text-dark mt-3'>Customer Queries</Link>
             </li>

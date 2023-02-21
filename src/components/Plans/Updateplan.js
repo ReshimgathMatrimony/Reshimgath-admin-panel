@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import './Createplan.css';
 import axios from 'axios';
-import { json, Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Sidebar from '../Sidebar';
 import logoutIcon from '../../Icons/logout.png'
 import crossIcon from '../../Icons/cross.png'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Createplan = () => {
   const location = useLocation()
   const navigate = useNavigate()
   const [singleplan, setSingleplan] = useState({})
+  const notify = (p, msg) => p ? toast.success(msg) : toast.error(msg);
 
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
@@ -21,6 +24,7 @@ const Createplan = () => {
         // console.log(res.data)
       }).catch((err) => {
         console.log(err)
+        notify(1, "Something went wrong.. Try after sometime!")
       })
     }
     else {
@@ -37,9 +41,14 @@ const Createplan = () => {
     const payLoad = { ...data, services: JSON.stringify(finalBucket), id: location.state.id, mediator: data.mediator ? (JSON.parse(data.mediator)) : (JSON.parse('false')) }
 
     axios.post('http://localhost:3031/admincrud/updateplan', payLoad).then((res) => {
-      console.log(res.data)
+      // console.log(res.data)
+      notify(1, "Plan Updated Successfully..!")
+      setTimeout(() => {
+        navigate(-1)
+      }, 2000);
     }).catch((err) => {
-      console.log(err)
+      notify(0, "Oops something went wrong..!")
+      // console.log(err)
     })
   }
 
@@ -75,7 +84,7 @@ const Createplan = () => {
         </div>
 
         <div classNameNameName="container">
-
+          <ToastContainer position="bottom-left" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
           <form className='mt-5 createplan_div p-3' onSubmit={handleSubmit}>
             <h4 className='mb-5'>Update Plan</h4>
 
@@ -128,7 +137,7 @@ const Createplan = () => {
               </label>
             </div>
 
-            <button type="submit" className="btn createAdminBtn">Submit Now</button>
+            <button type="submit" className="btn createAdminBtn">Update Plan Now</button>
           </form>
         </div>
       </div>

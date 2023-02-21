@@ -7,13 +7,16 @@ import logoutIcon from '../../Icons/logout.png'
 import rechargeIcon from '../../Icons/payment.png'
 import axios from 'axios'
 import '../Users/Users.css'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Users = () => {
+  const notify = (p, msg) => p ? toast.success(msg) : toast.error(msg);
   const handleDate = (date) => {
     const mydate = new Date(date)
     const newdate = mydate.toLocaleDateString()
     if (newdate === '1/1/1970') {
-      return '0'
+      return '---'
     } else {
       return newdate
     }
@@ -21,10 +24,10 @@ const Users = () => {
 
   //********** Deleting User Start *************
   const [status, setStatus] = useState(false)
-  const deleteAdmin = (id) => {
-    const result = window.confirm("Do Your Really Want to Delete?")
+  const deleteAdmin = (delId, userMail) => {
+    const result = window.confirm("Do Your Really Want to Delete?" + userMail)
     if (result) {
-      axios.post('http://localhost:3031/admincrud/deletespecificuser', { id }, {
+      axios.post('http://localhost:3031/admincrud/deletespecificuser', { id: delId }, {
         headers: {
           "Content-Type": "application/json",
           // "Authorization": localStorage.getItem('accesstoken')
@@ -32,10 +35,13 @@ const Users = () => {
         }
       }).then((res) => {
         setStatus(!status)
+        notify(1, "User Deleted Successfully..!")
       }).catch((err) => {
-        console.log(err)
+        notify(0, "Oopes..Something went wrong!")
+        // console.log(err)
       })
     }
+
   }
   //********** Deleting User End *************
 
@@ -66,7 +72,7 @@ const Users = () => {
   const handleFilter = () => {
     axios.post('http://localhost:3031/admincrud/getspecificuser', filterData).then((res) => {
       setData(res.data)
-      // console.log(res.data)
+      console.log(res.data)
     }).catch((err) => {
       console.log(err)
     })
@@ -75,6 +81,7 @@ const Users = () => {
   const handlePaidUsers = () => {
     axios.get('http://localhost:3031/admincrud/getpaidusers').then((res) => {
       setData(res.data)
+      // console.log(res.data)
     }).catch((err) => {
       console.log(err)
     })
@@ -103,7 +110,7 @@ const Users = () => {
         </div>
 
         <h4 className='text-center mt-5'>All Active Users</h4>
-
+        <ToastContainer position="bottom-left" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
         <div className='col-lg-12 d-grid gap-2 d-flex justify-content-between'>
           <div className="mt-4 mb-3">
             <input type="text" placeholder='Search by Name' onChange={(e) => { setFilterData({ ...filterData, name: e.target.value }) }} className='form-control' autoComplete='off' />
@@ -150,12 +157,15 @@ const Users = () => {
                     <td>{handleDate(value.rechargeDate)}</td>
                     <td>{handleDate(value.rechargExpireDate)}</td>
                     <td>
-                      <Link to="/rechargeuser" state={{ email: value.email }}><img src={rechargeIcon} /></Link>
+                      <Link to="/rechargeuser" state={{ email: value.email, coins: value.coins, firstname: value.firstname, rechargExpireDate: value.rechargExpireDate }}><img src={rechargeIcon} /></Link>
                     </td>
                     <td>
-                      <Link to="/updateuser" state={{ id: value._id }}><img src={editImg} /></Link>
+                      <Link to="/updateuser" state={{ id: value._id, email: value.email }}><img src={editImg} /></Link>
                     </td>
-                    <td><button className='btn border-none' onClick={() => deleteAdmin(value._id)}><img src={deleteImg} /></button></td>
+                    <td>
+                      <button className='btn border-none' onClick={() => deleteAdmin(value._id, value.email)} ><img src={deleteImg} /></button>
+                    </td>
+
                   </tr>
                 )
               })

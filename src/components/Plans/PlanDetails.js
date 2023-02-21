@@ -5,9 +5,12 @@ import editImg from '../../components/images/edit.png';
 import Sidebar from '../Sidebar';
 import logoutIcon from '../../Icons/logout.png'
 import axios from 'axios'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const PlanDetails = () => {
   const navigate = useNavigate()
+  const notify = (p, msg) => p ? toast.success(msg) : toast.error(msg);
   const [planData, setPlanData] = useState([])
 
   const [status, setStatus] = useState(false)
@@ -18,7 +21,8 @@ const PlanDetails = () => {
         // console.log(res.data)
         setPlanData(res.data)
       }).catch((err) => {
-        console.log(err)
+        notify(0, "oops..Something went wrong..")
+        // console.log(err)
       })
     }
     else {
@@ -34,8 +38,10 @@ const PlanDetails = () => {
       axios.post('http://localhost:3031/admincrud/deleteplan', { id }).then((res) => {
         // console.log(res.data)
         setStatus(!status)
+        notify(1, "Plan Deleted Successfully..!")
       }).catch((err) => {
-        console.log(err)
+        // console.log(err)
+        notify(0, "oops..Something went wrong..")
       })
     }
   }
@@ -51,6 +57,7 @@ const PlanDetails = () => {
           </Link>
         </div>
         <h4 className='text-center mt-5'>Plan Details</h4>
+        <ToastContainer position="bottom-left" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
         <div className='d-grid gap-2 d-md-flex justify-content-md-end '>
           <button className='btn createAdminBtn me-md-2 mt-3 mb-3 '><Link className='text-white text-decoration-none' to="/createplan">Add New Plan</Link></button>
         </div>

@@ -4,8 +4,11 @@ import Sidebar from '../Sidebar';
 import './Successcreate.css';
 import logoutIcon from "../../Icons/logout.png"
 import axios from 'axios'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Successcreate = () => {
+  const notify = (p, msg) => p ? toast.success(msg) : toast.error(msg);
 
   const navigate = useNavigate()
   useEffect(() => {
@@ -40,11 +43,15 @@ const Successcreate = () => {
         "Content-Type": 'application/json'
       }
     }).then((res) => {
-      console.log(res.data)
+      notify(1, "New Success Story Added..!")
+      // console.log(res.data)
     }).catch((err) => {
-      console.log(err)
+      // console.log(err)
+      notify(0, "oops..Something went wrong..!")
     })
-
+    e.target.women.value = ""
+    e.target.men.value = ""
+    e.target.date.value = ""
   }
 
   return (
@@ -60,7 +67,8 @@ const Successcreate = () => {
         </div>
 
         <div className="container">
-          <form className='mt-5 p-2' onSubmit={handleSubmit}>
+          <form className='mt-5 p-2' onSubmit={handleSubmit} autoComplete="Off">
+            <ToastContainer position="bottom-left" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
             <h3 className='mb-3'>Create New Story</h3>
 
             <div className="row">

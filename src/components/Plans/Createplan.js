@@ -5,9 +5,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import Sidebar from '../Sidebar';
 import logoutIcon from '../../Icons/logout.png'
 import crossIcon from '../../Icons/cross.png'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Createplan = () => {
-
+  const notify = (p, msg) => p ? toast.success(msg) : toast.error(msg);
   const navigate = useNavigate()
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
@@ -25,10 +27,17 @@ const Createplan = () => {
     const payLoad = { ...data, services: JSON.stringify(finalBucket) }
     console.log(payLoad)
     axios.post('http://localhost:3031/admincrud/createplan', payLoad).then((res) => {
-      console.log(res.data)
+      notify(1, "New plan added successfully..!")
+      // console.log(res.data)
     }).catch((err) => {
-      console.log(err)
+      notify(0, "Oops..Something went wrong!")
+      // console.log(err)
     })
+    e.target.price.value = ""
+    e.target.contact_count.value = ""
+    e.target.expiresinMonths.value = ""
+    e.target.mediator.value = ""
+    setFinalBucket([])
   }
 
   // ************* Bucket For Plan Description *****************
@@ -61,7 +70,7 @@ const Createplan = () => {
         </div>
 
         <div classNameNameName="container">
-
+          <ToastContainer position="bottom-left" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
           <form className='mt-5 createplan_div p-3' onSubmit={handleSubmit} autoComplete="off">
             <h4 className='mb-5'>Add New Plan</h4>
 
