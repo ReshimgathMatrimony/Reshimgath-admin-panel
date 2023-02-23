@@ -14,6 +14,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 
 const AddProfile = () => {
+    const rashiArr = ['Mesh', 'Vrishabh', 'Mithun', 'Kark', 'Sinh', 'Kanya', 'Tula', 'Vrishchik'];
+    const nakshtraArr = ['Ashwini', 'Bharani', 'Krittika', 'Rohini', 'Mrigashira', 'Ardra', 'Punarvasu', 'Pushya', 'Ashlesha', 'Magha', 'Purva Phalguni', 'Uttara', 'Phalguni', 'Hasta', 'Chitra', 'Swati', 'Vishaka', 'Anurada', 'Jyeshta', 'Mula', 'Purva Ashadha', 'Uttara Ashadha', 'Shravana', 'Dhanishta', 'Shatabhishak', 'Purva Bhadrapada', 'Uttara Bhadrapada', 'Revati']
+    const ganArr = ['manav gan', 'dev gan', 'rakshas gan'];
+    const nadiArr = ['Aadi Nadi', 'Madhya Nadi', 'Antya Nadi']
+
     const navigate = useNavigate()
     const notify = (p, msg) => p ? toast.success(msg) : toast.error(msg);
 
@@ -28,12 +33,12 @@ const AddProfile = () => {
 
     }, [])
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        const formdata = new FormData(e.target);
-        const data = Object.fromEntries(formdata.entries());
-        console.log(data);
-    }
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     const formdata = new FormData(e.target);
+    //     const data = Object.fromEntries(formdata.entries());
+    //     console.log(data);
+    // }
     const [pass, setPass] = useState(false);
     const [countriesName, setCountriesName] = useState('')
 
@@ -52,8 +57,8 @@ const AddProfile = () => {
     // Fetching States By Country
     const [stateData, setStateData] = useState([])
     const handleCountry = (e) => {
-        setCountriesName(e.target.value)
-        axios.get(`https://api.countrystatecity.in/v1/countries/${e.target.value}/states`, {
+        setCountriesName(e.target.value.split(',')[0])
+        axios.get(`https://api.countrystatecity.in/v1/countries/${e.target.value.split(',')[0]}/states`, {
             headers: {
                 'X-CSCAPI-KEY': 'MGZMRlZLbkZ0SmNiOGkxQzBlREFLYjBKdlZZU1BnRmlRbGI3N2lvVg=='
             }
@@ -67,7 +72,7 @@ const AddProfile = () => {
     const [cityData, setCityData] = useState([])
 
     const handleState = (event) => {
-        axios.get(`https://api.countrystatecity.in/v1/countries/${countriesName}/states/${event.target.value}/cities`, {
+        axios.get(`https://api.countrystatecity.in/v1/countries/${countriesName}/states/${event.target.value.split(',')[0]}/cities`, {
             headers: {
                 'X-CSCAPI-KEY': 'MGZMRlZLbkZ0SmNiOGkxQzBlREFLYjBKdlZZU1BnRmlRbGI3N2lvVg=='
             }
@@ -117,7 +122,7 @@ const AddProfile = () => {
         e.preventDefault()
         const formdata = new FormData(e.target);
         const data2 = Object.fromEntries(formdata.entries());
-        const payLoad = { ...data2, email: mail, image1: await imageFormator(data2.image1), image2: await imageFormator(data2.image2), image3: await imageFormator(data2.image3) }
+        const payLoad = { ...data2, email: mail, image1: await imageFormator(data2.image1), image2: await imageFormator(data2.image2), image3: await imageFormator(data2.image3), country_name: data2.country_name.split(',')[1], state_name: data2.state_name.split(',')[1] }
         // console.log(payLoad)
 
         axios.post('http://localhost:3031/admincrud/getbasicinfo', payLoad).then((res) => {
@@ -385,7 +390,7 @@ const AddProfile = () => {
                                         <div className="row">
                                             <div className="col-lg-4 mb-4">
                                                 <select name="caste" className="form-select form-select" aria-label=".form-select-sm example">
-                                                    <option selected>-- Caste --</option>
+                                                    <option selected>-- Religion --</option>
                                                     {
                                                         religionData?.map((val, id) => {
                                                             return (
@@ -397,9 +402,10 @@ const AddProfile = () => {
                                             </div>
 
                                             <div className="col-lg-4 mb-4">
-                                                <select name="subCaste" className="form-select form-select" aria-label=".form-select-sm example">
-                                                    <option selected>-- Sub-caste --</option>
-                                                </select>
+                                                <input type="text" name="subCaste" className='form-control' placeholder='Caste' />
+                                                {/* <select name="subCaste" className="form-select form-select" aria-label=".form-select-sm example">
+                                                    <option selected>-- Caste --</option>
+                                                </select> */}
                                             </div>
 
                                             <div className="col-lg-4 mb-4">
@@ -479,7 +485,7 @@ const AddProfile = () => {
                                                     {
                                                         country?.map((val, id) => {
                                                             return (
-                                                                <option value={val.iso2}>{val.name}</option>
+                                                                <option value={`${val.iso2},${val.name}`}>{val.name}</option>
                                                             )
                                                         })
                                                     }
@@ -492,7 +498,7 @@ const AddProfile = () => {
                                                     {
                                                         stateData?.map((value, index) => {
                                                             return (
-                                                                <option value={value.iso2}>{value.name}</option>
+                                                                <option value={`${value.iso2},${value.name}`}>{value.name}</option>
                                                             )
                                                         })
                                                     }
@@ -588,6 +594,7 @@ const AddProfile = () => {
                                                 <label htmlFor="bother_select" style={{ color: "black" }}>Brothers&emsp;</label>
                                                 <select className="form-select form-select" name="bother_select" id="bother_select" aria-label=".form-select-sm example">
                                                     <option value="null">-- Please Select --</option>
+                                                    <option value="no">No</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="More than 2">More than 2</option>
@@ -597,7 +604,7 @@ const AddProfile = () => {
                                             <div className="col-lg-3 d-flex mb-4">
                                                 <label htmlFor="bother_status" style={{ color: "black" }}>Married&emsp;</label>
                                                 <select className="form-select form-select" name="bother_status" id="bother_status" aria-label=".form-select-sm example">
-                                                    <option value="null"></option>
+                                                    <option value="null">-- Select --</option>
                                                     <option value="yes">Yes</option>
                                                     <option value="no">No</option>
                                                 </select>
@@ -606,7 +613,8 @@ const AddProfile = () => {
                                             <div className="col-lg-3 d-flex mb-4">
                                                 <label htmlFor="sister_select" style={{ color: "black" }}>Sisters&emsp;</label>
                                                 <select className="form-select form-select" name="sister_select" aria-label=".form-select-sm example">
-                                                    <option value="null"></option>
+                                                    <option value="null">-- Select --</option>
+                                                    <option value="no">No</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="More than 2">More than 2</option>
@@ -616,7 +624,7 @@ const AddProfile = () => {
                                             <div className="col-lg-3 d-flex mb-4">
                                                 <label htmlFor="sister_status" style={{ color: "black" }}>Married&emsp;</label>
                                                 <select className="form-select form-select" name="sister_status" aria-label=".form-select-sm example">
-                                                    <option value="null"></option>
+                                                    <option value="null">-- Select --</option>
                                                     <option value="yes">Yes</option>
                                                     <option value="no">No</option>
                                                 </select>
@@ -666,20 +674,27 @@ const AddProfile = () => {
                                             <div className="col-lg-4 mb-4">
                                                 <select name="education_pref" className="form-select form-select" aria-label=".form-select-sm example">
                                                     <option value="" selected>-- Education --</option>
-                                                    <option value="1">hh1</option>
-                                                    <option value="1">hh2</option>
-                                                    <option value="1">hh4</option>
-                                                    <option value="1">hh5</option>
+                                                    {
+                                                        educationdata?.map((val, id) => {
+                                                            return (
+                                                                <option key={id} value={val.education}>{val.education}</option>
+                                                            )
+                                                        })
+                                                    }
                                                 </select>
                                             </div>
 
                                             <div className="col-lg-4 mb-4">
                                                 <select name="occupation_pref" className="form-select form-select" aria-label=".form-select-sm example">
                                                     <option value="" selected>-- Occupation --</option>
-                                                    <option value="1">hh1</option>
-                                                    <option value="1">h2</option>
-                                                    <option value="1">h4</option>
-                                                    <option value="1">h5</option>
+                                                    <option value="IT Software">IT Software</option>
+                                                    <option value="Business">Business</option>
+                                                    <option value="Lawyer">Lawyer</option>
+                                                    <option value="Doctor">Doctor</option>
+                                                    <option value="Nurse">Nurse</option>
+                                                    <option value="Teacher">Teacher</option>
+                                                    <option value="CA/Accountant">CA/Accountant</option>
+                                                    <option value="Other">Other</option>
 
                                                 </select>
                                             </div>
@@ -687,10 +702,11 @@ const AddProfile = () => {
                                             <div className="col-lg-4 mb-4">
                                                 <select name="salary_pref" className="form-select form-select" aria-label=".form-select-sm example">
                                                     <option valuee="" selected>-- Salary / Annual Package --</option>
-                                                    <option value="1">h1</option>
-                                                    <option value="1">h2</option>
-                                                    <option value="1">h4</option>
-                                                    <option value="1">h5</option>
+                                                    <option value="Below 1 Lack">Below 1 Lack</option>
+                                                    <option value="1 to 3 Lack">1 to 3 Lack</option>
+                                                    <option value="3 to 6 Lack">3 to 6 Lack</option>
+                                                    <option value="6 to 9 Lack">6 to 9 Lack</option>
+                                                    <option value="Above 9 Lack">Above 9 Lack</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -699,10 +715,11 @@ const AddProfile = () => {
                                             <div className="col-lg-4 mb-4">
                                                 <select name="complexion_pref" className="form-select form-select" aria-label=".form-select-sm example">
                                                     <option value="" selected>-- Complexion --</option>
-                                                    <option value="1">h1</option>
-                                                    <option value="1">h2</option>
-                                                    <option value="1">h4</option>
-                                                    <option value="1">h5</option>
+                                                    <option value="Extremely fair skin">Extremely Fair Skin</option>
+                                                    <option value="Fair Skin">Fair Skin</option>
+                                                    <option value="Medium Skin">Medium Skin</option>
+                                                    <option value="Olive Skin">Olive Skin</option>
+                                                    <option value="Brown Skin">Brown Skin</option>
 
                                                 </select>
                                             </div>
@@ -710,54 +727,36 @@ const AddProfile = () => {
                                             <div className="col-lg-4 mb-4">
                                                 <select name="height_pref" className="form-select form-select" aria-label=".form-select-sm example">
                                                     <option value="" selected>-- Height --</option>
-                                                    <option value="1">h1</option>
-                                                    <option value="1">h2</option>
-                                                    <option value="1">h4</option>
-                                                    <option value="1">h5</option>
+                                                    {
+                                                        heightData?.map((val, index) => {
+                                                            return (
+                                                                <option value={val.height}>{val.height.split(".").map((value, indx) => {
+                                                                    return (
+                                                                        <h1>{value + `${indx === 0 ? "'" : '"'}`}</h1>
+                                                                    )
+                                                                })}</option>
+                                                            )
+                                                        })
+                                                    }
                                                 </select>
                                             </div>
 
                                             <div className="col-lg-4 mb-4">
-                                                <select name="religion_pref" className="form-select form-select" aria-label=".form-select-sm example">
-                                                    <option value="" selected>-- Religion --</option>
-                                                    <option value="1">h1</option>
-                                                    <option value="1">h2</option>
-                                                    <option value="1">h4</option>
-                                                    <option value="1">h5</option>
-                                                </select>
+                                                <input type="text" name="religion_pref" placeholder='Religion Preference' className='form-control' />
                                             </div>
                                         </div>
 
                                         <div className="row">
                                             <div className="col-lg-4 mb-4">
-                                                <select name="caste_pref" className="form-select form-select" aria-label=".form-select-sm example">
-                                                    <option value="" selected>-- Caste --</option>
-                                                    <option value="1">h1</option>
-                                                    <option value="1">j2</option>
-                                                    <option value="1">j4</option>
-                                                    <option value="1">j5</option>
-
-                                                </select>
+                                                <input type="text" name="caste_pref" placeholder='Caste Preference' className='form-control' />
                                             </div>
 
                                             <div className="col-lg-4 mb-4">
-                                                <select name="state_pref" className="form-select form-select" aria-label=".form-select-sm example">
-                                                    <option value="" selected>-- State --</option>
-                                                    <option value="1">j1</option>
-                                                    <option value="1">j2</option>
-                                                    <option value="1">j4</option>
-                                                    <option value="1">j5</option>
-                                                </select>
+                                                <input type="text" name="state_pref" className='form-control' placeholder='State Preference' />
                                             </div>
 
                                             <div className="col-lg-4 mb-4">
-                                                <select name="location_pref" className="form-select form-select" aria-label=".form-select-sm example">
-                                                    <option value="" selected>-- Location --</option>
-                                                    <option value="1">j1</option>
-                                                    <option value="1">j2</option>
-                                                    <option value="1">j4</option>
-                                                    <option value="1">j5</option>
-                                                </select>
+                                                <input type="text" name="location_pref" placeholder='Location Preference' className='form-control' />
                                             </div>
                                         </div>
 
@@ -794,14 +793,26 @@ const AddProfile = () => {
                                             <div className="col-lg-4 mb-4">
                                                 <select name="rashi" className="form-select form-select" aria-label=".form-select-sm example">
                                                     <option selected>-- Rashi --</option>
-                                                    <option value="option1">option1</option>
+                                                    {
+                                                        rashiArr?.map((val, id) => {
+                                                            return (
+                                                                <option value={val}>{val}</option>
+                                                            )
+                                                        })
+                                                    }
                                                 </select>
                                             </div>
 
                                             <div className="col-lg-4 mb-4">
                                                 <select name="nakshatra" className="form-select form-select" aria-label=".form-select-sm example">
                                                     <option selected>-- Nakshatra --</option>
-                                                    <option value="option1">option1</option>
+                                                    {
+                                                        nakshtraArr?.map((val, id) => {
+                                                            return (
+                                                                <option value={val}>{val}</option>
+                                                            )
+                                                        })
+                                                    }
 
                                                 </select>
                                             </div>
@@ -817,10 +828,7 @@ const AddProfile = () => {
 
                                         <div className="row">
                                             <div className="col-lg-4 mb-4">
-                                                <select name="charan" className="form-select form-select" aria-label=".form-select-sm example">
-                                                    <option selected>-- Charan --</option>
-                                                    <option value="option1">option1</option>
-                                                </select>
+                                                <input type="text" name="charan" className='form-control' placeholder='Charan' />
                                             </div>
 
                                             <div className="col-lg-4 mb-4">
@@ -836,21 +844,30 @@ const AddProfile = () => {
                                             <div className="col-lg-4 mb-4">
                                                 <select name="nadi" className="form-select form-select" aria-label="form-select-sm example">
                                                     <option selected>-- Nadi --</option>
-                                                    <option value="option1">option1</option>
+                                                    {
+                                                        nadiArr?.map((val, id) => {
+                                                            return (
+                                                                <option value={val}>{val}</option>
+                                                            )
+                                                        })
+                                                    }
                                                 </select>
                                             </div>
 
                                             <div className="col-lg-4 mb-4">
-                                                <select name="devak" className="form-select form-select" aria-label=".form-select-sm example">
-                                                    <option selected>-- Devak --</option>
-                                                    <option value="option1">option1</option>
-                                                </select>
+                                                <input type="text" name="devak" className='form-control' placeholder='Devak' />
                                             </div>
 
                                             <div className="col-lg-4 mb-4">
                                                 <select name="gan" className="form-select form-select" aria-label=".form-select-sm example">
                                                     <option selected>-- Gan --</option>
-                                                    <option value="option1">option1</option>
+                                                    {
+                                                        ganArr?.map((val, id) => {
+                                                            return (
+                                                                <option value={val}>{val}</option>
+                                                            )
+                                                        })
+                                                    }
                                                 </select>
                                             </div>
                                         </div>
