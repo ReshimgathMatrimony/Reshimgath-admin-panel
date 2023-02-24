@@ -84,7 +84,7 @@ const Successcreate = () => {
             </div>
 
             <div className='mb-3'>
-              <p className='d-flex fw-bold mt-3'>Image of Bride & Groom</p>
+              <p className='d-flex fw-bold mt-3'>Image of Bride & Groom: (Width:360 x Height:330 Pixels)</p>
               <input name='image' type="file" className="form-control" />
             </div>
 
