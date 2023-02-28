@@ -38,7 +38,7 @@ const Updatehoroscope = ({ email }) => {
             <div className="row d-flex justify-content-center mt-4 mb-5">
                 <div className="col-lg-10">
                     <h4 className='d-flex mb-4'>5. Update Horoscopic Details (Optional): </h4>
-                    <form onSubmit={handleHoroscope}>
+                    <form onSubmit={handleHoroscope} autoComplete="off">
                         <div className="row">
                             <div className="col-lg-4 mb-4">
                                 <select name="rashi" value={horoscope.rashi} onChange={(e) => { setHoroscope({ ...horoscope, rashi: e.target.value }) }} className="form-select form-select" aria-label=".form-select-sm example">

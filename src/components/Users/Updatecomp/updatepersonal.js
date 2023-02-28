@@ -15,6 +15,7 @@ const Updatepersonal = ({ email }) => {
     useEffect(() => {
         axios.post('http://localhost:3031/admincrud/getpersonaldetailsupdate', { email }).then((res) => {
             setperonslaData(res.data)
+            console.log(res.data)
             setPrevImg1(res.data.image1)
             setPrevImg2(res.data.image2)
             setPrevImg3(res.data.image3)
@@ -63,7 +64,7 @@ const Updatepersonal = ({ email }) => {
             <div className="row d-flex justify-content-center mt-4">
                 <div className="col-lg-10">
                     <h4 className='d-flex mb-4'>2. Update Personal Information: </h4>
-                    <form onSubmit={handlePeronldata}>
+                    <form onSubmit={handlePeronldata} autoComplete="off">
                         <div className="row">
                             <div className="col-lg-4 mb-4">
                                 <select name="height" value={peronsladata.height} onChange={(e) => { setperonslaData({ ...peronsladata, height: e.target.value }) }} className="form-select form-select" aria-label=".form-select-sm example">
@@ -197,7 +198,7 @@ const Updatepersonal = ({ email }) => {
 
                         <div className="row">
                             <div className="col-lg-4 mb-4">
-                                <select name="disablity" value={peronsladata.disablity} onChange={(e) => { setperonslaData({ ...peronsladata, disability: e.target.value }) }} className="form-select form-select" aria-label=".form-select-sm example">
+                                <select name="disablity" value={peronsladata.disablity} onChange={(e) => { setperonslaData({ ...peronsladata, disablity: e.target.value }) }} className="form-select form-select">
                                     <option selected>-- Disability --</option>
                                     <option value="None">None</option>
                                     <option value="Blind">Blind</option>
@@ -229,6 +230,10 @@ const Updatepersonal = ({ email }) => {
                         </div>
 
                         <div className="row">
+                            <div className="col-lg-12 mb-4">
+                                <input type="number" name="age" value={peronsladata.age} onChange={(e) => { setperonslaData({ ...peronsladata, age: e.target.value }) }} className='form-control' placeholder='Your Age' />
+                            </div>
+
                             <div className="col-lg-12 mb-4">
                                 <input type="text" value={peronsladata.addressLine1} name="addressLine1" onChange={(e) => { setperonslaData({ ...peronsladata, addressLine1: e.target.value }) }} className='form-control' placeholder='Residential Address Line 1' />
                             </div>
@@ -269,28 +274,28 @@ const Updatepersonal = ({ email }) => {
 
                         <div className="row mb-5">
                             <div className="col-lg-4 mb-4">
-                                <input type="text" name="country_name" className='form-control' value={peronsladata.country_name} onChange={(e) => { setperonslaData({ ...peronsladata, country_name: e.target.value }) }} />
+                                <input type="text" name="country_name" className='form-control' placeholder='Update Country' value={peronsladata.country_name} onChange={(e) => { setperonslaData({ ...peronsladata, country_name: e.target.value }) }} />
 
                             </div>
 
                             <div className="col-lg-4 mb-4">
-                                <input type="text" name="state_name" className='form-control' value={peronsladata.state_name} onChange={(e) => { setperonslaData({ ...peronsladata, state_name: e.target.value }) }} />
+                                <input type="text" name="state_name" className='form-control' placeholder='Update State' value={peronsladata.state_name} onChange={(e) => { setperonslaData({ ...peronsladata, state_name: e.target.value }) }} />
 
                             </div>
 
                             <div className="col-lg-4 mb-4">
-                                <input type="text" name="city_name" className='form-control' value={peronsladata.city_name} onChange={(e) => { setperonslaData({ ...peronsladata, city_name: e.target.value }) }} />
+                                <input type="text" name="city_name" className='form-control' placeholder='Update City' value={peronsladata.city_name} onChange={(e) => { setperonslaData({ ...peronsladata, city_name: e.target.value }) }} />
                             </div>
                             <div className="col-lg-4 mb-4">
-                                <input type="text" name="taluka" value={peronsladata.taluka} onChange={(e) => { setperonslaData({ ...peronsladata, taluka: e.target.value }) }} className='form-control' placeholder='Taluka' />
-                            </div>
-
-                            <div className="col-lg-4 mb-4">
-                                <input type="text" name="district" value={peronsladata.district} onChange={(e) => { setperonslaData({ ...peronsladata, district: e.target.value }) }} className='form-control' placeholder='District' />
+                                <input type="text" name="taluka" value={peronsladata.taluka} onChange={(e) => { setperonslaData({ ...peronsladata, taluka: e.target.value }) }} className='form-control' placeholder='Update Taluka' />
                             </div>
 
                             <div className="col-lg-4 mb-4">
-                                <input type="text" name="mother_tongue" value={peronsladata.mother_tongue} onChange={(e) => { setperonslaData({ ...peronsladata, mother_tongue: e.target.value }) }} className='form-control' placeholder='Mother Tongue' />
+                                <input type="text" name="district" value={peronsladata.district} onChange={(e) => { setperonslaData({ ...peronsladata, district: e.target.value }) }} className='form-control' placeholder='Update District' />
+                            </div>
+
+                            <div className="col-lg-4 mb-4">
+                                <input type="text" name="mother_tongue" value={peronsladata.mother_tongue} onChange={(e) => { setperonslaData({ ...peronsladata, mother_tongue: e.target.value }) }} className='form-control' placeholder='Update Mother Tongue' />
                             </div>
                         </div>
                         <div className="row mb-4">

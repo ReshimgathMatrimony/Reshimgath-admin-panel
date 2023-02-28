@@ -34,7 +34,7 @@ const Updatefamily = ({ email }) => {
             <div className="row d-flex justify-content-center family_details_row mt-5">
                 <div className="col-lg-10">
                     <h4 className='d-flex mb-4'>3. Update Family Information: </h4>
-                    <form onSubmit={handleFamily}>
+                    <form onSubmit={handleFamily} autoComplete="off">
                         <div className="row">
                             <div className="col-lg-6 d-flex mb-3">
                                 <label htmlFor="fathers_name" style={{ color: "black", width: "40%", fontFamily: "familyFont" }}>Father's Name</label>
@@ -72,6 +72,7 @@ const Updatefamily = ({ email }) => {
                                 <label htmlFor="bother_select" style={{ color: "black" }}>Brothers&emsp;</label>
                                 <select className="form-select form-select" value={family.bother_select} onChange={(e) => { setFamily({ ...family, bother_select: e.target.value }) }} name="bother_select">
                                     <option value="null">-- Please Select --</option>
+                                    <option value="no">No</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="More than 2">More than 2</option>
@@ -91,6 +92,7 @@ const Updatefamily = ({ email }) => {
                                 <label htmlFor="sister_select" style={{ color: "black" }}>Sisters&emsp;</label>
                                 <select className="form-select form-select" value={family.sister_select} onChange={(e) => { setFamily({ ...family, sister_select: e.target.value }) }} name="sister_select" aria-label=".form-select-sm example">
                                     <option value="null">--Select--</option>
+                                    <option value="no">No</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="More than 2">More than 2</option>

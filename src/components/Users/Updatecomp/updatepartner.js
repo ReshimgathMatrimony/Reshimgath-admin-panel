@@ -38,7 +38,7 @@ const Updatepartner = ({ email }) => {
             <div className="row d-flex justify-content-center mt-4">
                 <div className="col-lg-10">
                     <h4 className='d-flex mb-4'>4. Update Partner Preference Details: </h4>
-                    <form onSubmit={handlePartner}>
+                    <form onSubmit={handlePartner} autoComplete="off">
                         <div className="row">
                             <div className="col-lg-4 mb-4">
                                 <select name="education_pref" value={partner.education_pref} onChange={(e) => { setPartner({ ...partner, education_pref: e.target.value }) }} className="form-select form-select" aria-label=".form-select-sm example">

@@ -215,6 +215,7 @@ const AddProfile = () => {
                         (
                             <div className="row d-flex justify-content-center mt-4">
                                 <div className="col-lg-10 outer_form_div">
+                                    <p style={{ color: 'red' }}>*Please Add All Form Details in Only One Go.</p>
                                     <h4 className='d-flex mb-4'>1. Basic Registration: </h4>
 
                                     <form onSubmit={handleRegister} autoComplete='off'>
@@ -454,6 +455,10 @@ const AddProfile = () => {
                                         </div>
 
                                         <div className="row">
+                                            <div className="col-lg-12 mb-4">
+                                                <input type="number" name="age" className='form-control' placeholder='Your Age' />
+                                            </div>
+
                                             <div className="col-lg-12 mb-4">
                                                 <input type="text" name="addressLine1" id="addressLine1" className='form-control' placeholder='Residential Address Line 1' />
                                             </div>
