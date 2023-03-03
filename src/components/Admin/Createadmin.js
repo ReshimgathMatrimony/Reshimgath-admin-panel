@@ -25,12 +25,16 @@ const Createadmin = () => {
         axios.post('http://localhost:3031/admincrud/createadmin', data, {
             headers: {
                 "Content-Type": "application/json",
-                // "Authorization": localStorage.getItem('accesstoken')
-                "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNAZ21haWwuY29tIiwicm9vdCI6dHJ1ZSwiaWF0IjoxNjc2MTAwNTkxfQ.LzxSzuv2VSirs7mFNEbU7v_AFj4yM9mfVQC-H-H8wTo'
+                "Authorization": localStorage.getItem('accesstoken')
+                // "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNAZ21haWwuY29tIiwicm9vdCI6dHJ1ZSwiaWF0IjoxNjc2MTAwNTkxfQ.LzxSzuv2VSirs7mFNEbU7v_AFj4yM9mfVQC-H-H8wTo'
             }
         }).then((res) => {
             notify(1, "Admin Created Successfully..!")
-            // console.log(res.data)
+
+            setTimeout(() => {
+                navigate('/admin')
+            }, 2000)
+
         }).catch((err) => {
             // console.log(err)
             notify(0, "Oops..Something went wrong!")

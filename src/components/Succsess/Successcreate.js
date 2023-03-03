@@ -45,6 +45,9 @@ const Successcreate = () => {
     }).then((res) => {
       notify(1, "New Success Story Added..!")
       // console.log(res.data)
+      setTimeout(() => {
+        navigate('/successstories')
+      }, 2000)
     }).catch((err) => {
       // console.log(err)
       notify(0, "oops..Something went wrong..!")

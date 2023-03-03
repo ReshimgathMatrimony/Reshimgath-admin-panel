@@ -28,10 +28,11 @@ const Createplan = () => {
     console.log(payLoad)
     axios.post('http://localhost:3031/admincrud/createplan', payLoad).then((res) => {
       notify(1, "New plan added successfully..!")
-      // console.log(res.data)
+      setTimeout(() => {
+        navigate('/plandetails')
+      }, 2000)
     }).catch((err) => {
       notify(0, "Oops..Something went wrong!")
-      // console.log(err)
     })
     e.target.price.value = ""
     e.target.contact_count.value = ""

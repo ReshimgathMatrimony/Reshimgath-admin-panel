@@ -178,6 +178,9 @@ const AddProfile = () => {
             // console.log(res.data)
             notify(1, "Horoscope information submitted successfully..!")
             setHoroscopeinfo(true)
+            setTimeout(() => {
+                navigate('/users')
+            }, 2000)
         }).catch((err) => {
             console.log(err)
         })

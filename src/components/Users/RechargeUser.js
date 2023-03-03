@@ -10,6 +10,7 @@ import timerIcon from '../../Icons/timer.png'
 import supportIcon from '../../Icons/support.png'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
+import ReactLoading from 'react-loading';
 
 const RechargeUser = () => {
   const navigate = useNavigate()
@@ -17,7 +18,7 @@ const RechargeUser = () => {
   // console.log(location.state.rechargExpireDate)
   const notify = (p, msg) => p ? toast.success(msg) : toast.error(msg);
 
-
+  const [loading, setLoading] = useState(false)
   const [plan, setPlan] = useState({})
   const [data, setData] = useState([])
 
@@ -69,11 +70,13 @@ const RechargeUser = () => {
   const handleRecharge = () => {
     const res = window.confirm("Do you really want to recharge this user?")
     if (res) {
+      setLoading(true)
       const payLoad = { email: location.state.email, coins: plan.contact_count + location.state.coins, plan: plan.price, days: changeDate() + plan.expiresinMonths * 30, details: JSON.stringify(plan.services), firstname: location.state.firstname, }
       // console.log(payLoad)
       axios.post('http://localhost:3031/admincrud/rechargeuser', payLoad).then((res) => {
         // console.log(res.data)
         notify(1, "User Recharge Done..!")
+        setLoading(false)
         setTimeout(() => {
           navigate(-1)
         }, 2000);
@@ -136,7 +139,13 @@ const RechargeUser = () => {
                 </ul>
 
               </div>
-              <button className='rechargeBtn' onClick={handleRecharge}>Recharge Now</button>
+              {
+                loading ?
+                  (<div className='mt-10'><ReactLoading type={'spinningBubbles'} color={'#12e56'} height={'40px'} width={'40px'} /></div>)
+                  :
+                  (<button className='rechargeBtn' onClick={handleRecharge}>Recharge Now</button>)
+              }
+
             </div>) : ('')
           }
 
