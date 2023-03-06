@@ -32,13 +32,18 @@ const Successupdate = () => {
   }
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
-      axios.post('http://localhost:3031/admincrud/getonestory', { id: location.state.id }).then((res) => {
+      axios.post('http://localhost:3031/admincrud/getonestory', { id: location.state.id }, {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem('accesstoken')
+        }
+      }).then((res) => {
         setStoryData(res.data)
         setDateUpdate(handleDate(res.data.date))
         setPrevImg(res.data.image)
 
       }).catch((err) => {
-        console.log(err)
+        notify(0, "Something went wrong..!")
       })
     }
     else {
@@ -67,13 +72,15 @@ const Successupdate = () => {
 
     axios.post('http://localhost:3031/admincrud/updatestories', payLoad, {
       headers: {
-        "Content-Type": 'application/json'
+        "Content-Type": "application/json",
+        "Authorization": localStorage.getItem('accesstoken')
       }
     }).then((res) => {
-      // console.log(res.data)
       notify(1, "Success Story Updated..!")
+      setTimeout(() => {
+        navigate('/successstories')
+      }, 2000)
     }).catch((err) => {
-      // console.log(err)
       notify(0, "Oops..Something went wrong..!")
     })
 

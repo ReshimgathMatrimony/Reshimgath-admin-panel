@@ -30,15 +30,13 @@ const Users = () => {
       axios.post('http://localhost:3031/admincrud/deletespecificuser', { id: delId }, {
         headers: {
           "Content-Type": "application/json",
-          // "Authorization": localStorage.getItem('accesstoken')
-          "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNAZ21haWwuY29tIiwicm9vdCI6dHJ1ZSwiaWF0IjoxNjc2MTAwNTkxfQ.LzxSzuv2VSirs7mFNEbU7v_AFj4yM9mfVQC-H-H8wTo'
+          "Authorization": localStorage.getItem('accesstoken')
         }
       }).then((res) => {
         setStatus(!status)
         notify(1, "User Deleted Successfully..!")
       }).catch((err) => {
         notify(0, "Oopes..Something went wrong!")
-        // console.log(err)
       })
     }
 
@@ -50,11 +48,15 @@ const Users = () => {
   const navigate = useNavigate()
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
-      axios.get('http://localhost:3031/admincrud/getallusersfortable').then((res) => {
+      axios.get('http://localhost:3031/admincrud/getallusersfortable', {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem('accesstoken')
+        }
+      }).then((res) => {
         setData(res.data)
-        // console.log(res.data)
       }).catch((err) => {
-        console.log(err)
+        notify(0, "Something went wrong..!")
       })
     }
     else {

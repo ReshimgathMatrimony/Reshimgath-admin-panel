@@ -27,11 +27,15 @@ const RechargeUser = () => {
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
 
-      axios.get('http://localhost:3031/admincrud/getplannamesonly').then((res) => {
-        // console.log(res.data)
+      axios.get('http://localhost:3031/admincrud/getplannamesonly', {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem('accesstoken')
+        }
+      }).then((res) => {
         setData(res.data)
       }).catch((err) => {
-        console.log(err)
+        notify(0, "Something went wrong...!")
       })
 
     }
@@ -43,10 +47,15 @@ const RechargeUser = () => {
 
   const handlePlanSelect = (selectedId) => {
     if (selectedId !== 'temp') {
-      axios.post('http://localhost:3031/admincrud/getsingleplan', { id: selectedId }).then((res) => {
+      axios.post('http://localhost:3031/admincrud/getsingleplan', { id: selectedId }, {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem('accesstoken')
+        }
+      }).then((res) => {
         setPlan(res.data)
       }).catch((err) => {
-        console.log(err)
+        notify(0, "Something went wrong..!")
       })
     }
   }
@@ -73,16 +82,19 @@ const RechargeUser = () => {
       setLoading(true)
       const payLoad = { email: location.state.email, coins: plan.contact_count + location.state.coins, plan: plan.price, days: changeDate() + plan.expiresinMonths * 30, details: JSON.stringify(plan.services), firstname: location.state.firstname, }
       // console.log(payLoad)
-      axios.post('http://localhost:3031/admincrud/rechargeuser', payLoad).then((res) => {
-        // console.log(res.data)
+      axios.post('http://localhost:3031/admincrud/rechargeuser', payLoad, {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem('accesstoken')
+        }
+      }).then((res) => {
         notify(1, "User Recharge Done..!")
         setLoading(false)
         setTimeout(() => {
           navigate(-1)
         }, 2000);
       }).catch((err) => {
-        // console.log(err)
-        notify(0, "oops..Sometthing went wrong..!")
+        notify(0, "oops..Something went wrong..!")
       })
     }
 

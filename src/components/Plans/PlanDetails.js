@@ -18,11 +18,9 @@ const PlanDetails = () => {
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
       axios.get('http://localhost:3031/admincrud/getallplans').then((res) => {
-        // console.log(res.data)
         setPlanData(res.data)
       }).catch((err) => {
         notify(0, "oops..Something went wrong..")
-        // console.log(err)
       })
     }
     else {
@@ -35,12 +33,16 @@ const PlanDetails = () => {
   const handleServiceDelete = (id) => {
     const res = window.confirm('Are You Really Want to Delete..?')
     if (res) {
-      axios.post('http://localhost:3031/admincrud/deleteplan', { id }).then((res) => {
-        // console.log(res.data)
+      axios.post('http://localhost:3031/admincrud/deleteplan', { id }, {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem('accesstoken')
+        }
+      }).then((res) => {
         setStatus(!status)
         notify(1, "Plan Deleted Successfully..!")
       }).catch((err) => {
-        // console.log(err)
+        console.log(err)
         notify(0, "oops..Something went wrong..")
       })
     }

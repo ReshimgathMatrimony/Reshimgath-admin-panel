@@ -33,12 +33,6 @@ const AddProfile = () => {
 
     }, [])
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     const formdata = new FormData(e.target);
-    //     const data = Object.fromEntries(formdata.entries());
-    //     console.log(data);
-    // }
     const [pass, setPass] = useState(false);
     const [countriesName, setCountriesName] = useState('')
 
@@ -107,13 +101,16 @@ const AddProfile = () => {
         const data1 = Object.fromEntries(formdata.entries());
         // console.log(data1)
         setMail(data1.email)
-        axios.post('http://localhost:3031/admincrud/register', data1).then((res) => {
-            // console.log(res)
+        axios.post('http://localhost:3031/admincrud/register', data1, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem('accesstoken')
+            }
+        }).then((res) => {
             setRegisterdata(true)
             notify(1, "User Registered Successfully..!")
 
         }).catch((err) => {
-            // console.log(err)
             notify(0, "Oops..Somthing went wrong!")
         })
     }
@@ -123,14 +120,16 @@ const AddProfile = () => {
         const formdata = new FormData(e.target);
         const data2 = Object.fromEntries(formdata.entries());
         const payLoad = { ...data2, email: mail, image1: await imageFormator(data2.image1), image2: await imageFormator(data2.image2), image3: await imageFormator(data2.image3), country_name: data2.country_name.split(',')[1], state_name: data2.state_name.split(',')[1] }
-        // console.log(payLoad)
-
-        axios.post('http://localhost:3031/admincrud/getbasicinfo', payLoad).then((res) => {
+        axios.post('http://localhost:3031/admincrud/getbasicinfo', payLoad, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem('accesstoken')
+            }
+        }).then((res) => {
             setPersonalinfo(true)
             notify(1, "Personal Information Submitted Successfully..!")
         }).catch((err) => {
             notify(0, "Oops...Something went wrong..!")
-            console.log(err)
         })
     }
 
@@ -139,15 +138,15 @@ const AddProfile = () => {
         const formdata = new FormData(e.target);
         const data3 = Object.fromEntries(formdata.entries());
         const payLoad = { ...data3, email: mail }
-        // console.log(data3)
-
-        axios.post('http://localhost:3031/admincrud/getfamilydetails', payLoad).then((res) => {
+        axios.post('http://localhost:3031/admincrud/getfamilydetails', payLoad, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem('accesstoken')
+            }
+        }).then((res) => {
             notify(1, "Family Information Submitted Successfully..!")
             setFamilyinfo(true)
-            console.log(res.data)
-
         }).catch((err) => {
-            // console.log(err)
             notify(0, "Oops..Somthing went wrong!")
         })
     }
@@ -158,12 +157,15 @@ const AddProfile = () => {
         const data4 = Object.fromEntries(formdata.entries());
         // console.log(data4)
         const payLoad = { ...data4, email: mail }
-        axios.post('http://localhost:3031/admincrud/getpartnerprefrence', payLoad).then((res) => {
-            // console.log(res.data)
+        axios.post('http://localhost:3031/admincrud/getpartnerprefrence', payLoad, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem('accesstoken')
+            }
+        }).then((res) => {
             notify(1, "Partner Information submitted successfully..!")
             setPartnerinfo(true)
         }).catch((err) => {
-            // console.log(err)
             notify(0, "Oops..Somthing went wrong!")
         })
     }
@@ -174,15 +176,19 @@ const AddProfile = () => {
         const data5 = Object.fromEntries(formdata.entries());
         // console.log(data5)
         const payLoad = { ...data5, email: mail, mangal: JSON.parse(data5.mangal) }
-        axios.post('http://localhost:3031/admincrud/gethoroscopedetails', payLoad).then((res) => {
-            // console.log(res.data)
+        axios.post('http://localhost:3031/admincrud/gethoroscopedetails', payLoad, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem('accesstoken')
+            }
+        }).then((res) => {
             notify(1, "Horoscope information submitted successfully..!")
             setHoroscopeinfo(true)
             setTimeout(() => {
                 navigate('/users')
             }, 2000)
         }).catch((err) => {
-            console.log(err)
+            notify(0, "Something went wrong..!")
         })
     }
 

@@ -13,15 +13,19 @@ const Updatepersonal = ({ email }) => {
     const [prevImg2, setPrevImg2] = useState("")
     const [prevImg3, setPrevImg3] = useState("")
     useEffect(() => {
-        axios.post('http://localhost:3031/admincrud/getpersonaldetailsupdate', { email }).then((res) => {
+        axios.post('http://localhost:3031/admincrud/getpersonaldetailsupdate', { email }, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem('accesstoken')
+            }
+        }).then((res) => {
             setperonslaData(res.data)
-            console.log(res.data)
             setPrevImg1(res.data.image1)
             setPrevImg2(res.data.image2)
             setPrevImg3(res.data.image3)
 
         }).catch((err) => {
-            console.log(err)
+            notify(0, "Something went wrong..!")
         })
 
     }, [])
@@ -34,8 +38,6 @@ const Updatepersonal = ({ email }) => {
             }
         })
     }
-
-
     const handlePeronldata = async (e) => {
         e.preventDefault()
         const formdata = new FormData(e.target);
@@ -49,10 +51,14 @@ const Updatepersonal = ({ email }) => {
         data.image3.name === "" ? (newImg3 = prevImg3) : (newImg3 = await imageFormator(data.image3))
         const payLoad = { ...data, email, image1: newImg1, image2: newImg2, image3: newImg3, }
 
-        axios.post('http://localhost:3031/admincrud/updatebasicdetails', payLoad).then((res) => {
+        axios.post('http://localhost:3031/admincrud/updatebasicdetails', payLoad, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem('accesstoken')
+            }
+        }).then((res) => {
             notify(1, "User basic details updated succesfully")
         }).catch((err) => {
-
             notify(0, "User basic details not  updated succesfully")
         })
     }

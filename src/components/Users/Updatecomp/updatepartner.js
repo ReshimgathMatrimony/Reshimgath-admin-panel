@@ -10,11 +10,16 @@ const Updatepartner = ({ email }) => {
 
     const [partner, setPartner] = useState({})
     useEffect(() => {
-        axios.post('http://localhost:3031/admincrud/getpartnerdetailsupdate', { email }).then((res) => {
+        axios.post('http://localhost:3031/admincrud/getpartnerdetailsupdate', { email }, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem('accesstoken')
+            }
+        }).then((res) => {
             setPartner(res.data)
 
         }).catch((err) => {
-            console.log(err)
+            notify(0, "Something went wrong..!")
         })
 
     }, [])
@@ -25,10 +30,15 @@ const Updatepartner = ({ email }) => {
         const data = Object.fromEntries(formdata.entries());
         const payLoad = { ...data, email }
 
-        axios.post('http://localhost:3031/admincrud/updatepartnerdetails', payLoad).then((res) => {
+        axios.post('http://localhost:3031/admincrud/updatepartnerdetails', payLoad, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem('accesstoken')
+            }
+        }).then((res) => {
             notify(1, "User partner prefrence details updated succesfully")
         }).catch((err) => {
-            console.log(err)
+            notify(0, "Something went wrong..!")
         })
 
     }

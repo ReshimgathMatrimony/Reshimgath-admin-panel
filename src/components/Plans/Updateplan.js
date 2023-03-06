@@ -16,15 +16,18 @@ const Createplan = () => {
 
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
-      axios.post('http://localhost:3031/admincrud/getsingleplan', { id: location.state.id }).then((res) => {
+      axios.post('http://localhost:3031/admincrud/getsingleplan', { id: location.state.id }, {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem('accesstoken')
+        }
+      }).then((res) => {
         setSingleplan(res.data)
         //Following line will fetch data of services and add to Added Description Fields
         setFinalBucket(res.data.services)
         setCheck(res.data.mediator)
-        // console.log(res.data)
       }).catch((err) => {
-        console.log(err)
-        notify(1, "Something went wrong.. Try after sometime!")
+        notify(1, "Something went wrong...Try Again!")
       })
     }
     else {
@@ -40,15 +43,18 @@ const Createplan = () => {
 
     const payLoad = { ...data, services: JSON.stringify(finalBucket), id: location.state.id, mediator: data.mediator ? (JSON.parse(data.mediator)) : (JSON.parse('false')) }
 
-    axios.post('http://localhost:3031/admincrud/updateplan', payLoad).then((res) => {
-      // console.log(res.data)
+    axios.post('http://localhost:3031/admincrud/updateplan', payLoad, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": localStorage.getItem('accesstoken')
+      }
+    }).then((res) => {
       notify(1, "Plan Updated Successfully..!")
       setTimeout(() => {
         navigate(-1)
       }, 2000);
     }).catch((err) => {
       notify(0, "Oops something went wrong..!")
-      // console.log(err)
     })
   }
 

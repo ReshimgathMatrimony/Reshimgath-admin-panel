@@ -25,8 +25,12 @@ const Createplan = () => {
     const formdata = new FormData(e.target);
     const data = Object.fromEntries(formdata.entries());
     const payLoad = { ...data, services: JSON.stringify(finalBucket) }
-    console.log(payLoad)
-    axios.post('http://localhost:3031/admincrud/createplan', payLoad).then((res) => {
+    axios.post('http://localhost:3031/admincrud/createplan', payLoad, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": localStorage.getItem('accesstoken')
+      }
+    }).then((res) => {
       notify(1, "New plan added successfully..!")
       setTimeout(() => {
         navigate('/plandetails')
@@ -53,7 +57,6 @@ const Createplan = () => {
     const newArr = finalBucket.filter((value, index) => {
       return index !== id
     })
-
     setFinalBucket(newArr)
   }
 

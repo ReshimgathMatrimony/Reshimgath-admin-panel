@@ -3,7 +3,6 @@ import './LoginForm.css';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 
-
 const LoginForm = () => {
     const navigate = useNavigate()
     const [showError, setShowError] = useState(false)
@@ -12,20 +11,15 @@ const LoginForm = () => {
         e.preventDefault()
         const formdata = new FormData(e.target);
         const data = Object.fromEntries(formdata.entries());
-        console.log(data)
         axios.post('http://localhost:3031/admincrud/loginadmin', data, {
             headers: {
                 "Content-Type": "application/json",
             }
         }).then((res) => {
             localStorage.setItem('accesstoken', res.data.accesstoken)
-            // console.log(res.data)
             navigate('/')
         }).catch((err) => {
-            // console.log(err)
-
             setShowError(true)
-
         })
     }
 

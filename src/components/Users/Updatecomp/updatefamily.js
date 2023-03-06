@@ -7,10 +7,15 @@ const Updatefamily = ({ email }) => {
 
     const [family, setFamily] = useState({})
     useEffect(() => {
-        axios.post('http://localhost:3031/admincrud/getfamilydetailsupdate', { email }).then((res) => {
+        axios.post('http://localhost:3031/admincrud/getfamilydetailsupdate', { email }, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem('accesstoken')
+            }
+        }).then((res) => {
             setFamily(res.data)
         }).catch((err) => {
-            console.log(err)
+            notify(0, "Something Went Wrong..!")
         })
 
     }, [])
@@ -19,13 +24,18 @@ const Updatefamily = ({ email }) => {
         e.preventDefault()
         const formdata = new FormData(e.target);
         const data = Object.fromEntries(formdata.entries());
-
         const payLoad = { ...data, email }
-        axios.post('http://localhost:3031/admincrud/updatefamilydetails', payLoad).then((res) => {
-            notify(1, "User family details updated succesfully")
-            //   notify(1, "User Details Updated")
+
+        axios.post('http://localhost:3031/admincrud/updatefamilydetails', payLoad, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem('accesstoken')
+            }
+        }).then((res) => {
+            notify(1, "User family Details Updated Succesfully..")
+
         }).catch((err) => {
-            notify(0, "User family details not updated succesfully")
+            notify(0, "Something Went Wrong")
         })
 
     }

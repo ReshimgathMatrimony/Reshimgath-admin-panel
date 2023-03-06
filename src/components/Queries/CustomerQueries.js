@@ -3,18 +3,26 @@ import { Link, useNavigate } from 'react-router-dom';
 import Sidebar from '../Sidebar';
 import logoutIcon from '../../Icons/logout.png'
 import axios from 'axios'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+
 const CustomerQueries = () => {
   const navigate = useNavigate()
-
+  const notify = (p, msg) => p ? toast.success(msg) : toast.error(msg);
   const [customerQuery, setCustomerQuery] = useState([])
 
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
 
-      axios.get('http://localhost:3031/admincrud/customerqueries').then((res) => {
+      axios.get('http://localhost:3031/admincrud/customerqueries', {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem('accesstoken')
+        }
+      }).then((res) => {
         setCustomerQuery(res.data)
       }).catch((err) => {
-        console.log(err)
+        notify(0, "Something went wrong...!")
       })
     }
     else {
@@ -36,6 +44,7 @@ const CustomerQueries = () => {
           </Link>
         </div>
         <h4 className='text-center mt-5 mb-5'>Customer Queries</h4>
+        <ToastContainer position="bottom-left" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
         <table className="table">
           <thead>
             <tr>

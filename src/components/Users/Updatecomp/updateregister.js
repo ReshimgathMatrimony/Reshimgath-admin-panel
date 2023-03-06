@@ -7,10 +7,15 @@ const Updateregister = ({ email }) => {
     const notify = (p, msg) => p ? toast.success(msg) : toast.error(msg);
     const [registerdata, setRegisterdata] = useState({})
     useEffect(() => {
-        axios.post('http://localhost:3031/admincrud/getregisterdetailsupdate', { email }).then((res) => {
+        axios.post('http://localhost:3031/admincrud/getregisterdetailsupdate', { email }, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem('accesstoken')
+            }
+        }).then((res) => {
             setRegisterdata(res.data)
         }).catch((err) => {
-            console.log(err)
+            notify(0, "Something went wrong..!")
         })
 
     }, [])
@@ -19,10 +24,15 @@ const Updateregister = ({ email }) => {
         const formdata = new FormData(e.target);
         const data = Object.fromEntries(formdata.entries());
         const payLoad = { ...data, email }
-        axios.post('http://localhost:3031/admincrud/updateregisterdetails', payLoad).then((res) => {
-            notify(1, "User register details updated succesfully")
+        axios.post('http://localhost:3031/admincrud/updateregisterdetails', payLoad, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem('accesstoken')
+            }
+        }).then((res) => {
+            notify(1, "Register Details Updated..!")
         }).catch((err) => {
-            notify(0, "User register details not updated succesfully")
+            notify(0, "Something went wrong..!")
 
         })
 

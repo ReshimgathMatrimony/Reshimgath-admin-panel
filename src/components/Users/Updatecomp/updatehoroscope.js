@@ -11,10 +11,15 @@ const Updatehoroscope = ({ email }) => {
     const nadiArr = ['Aadi Nadi', 'Madhya Nadi', 'Antya Nadi']
     const [horoscope, setHoroscope] = useState({})
     useEffect(() => {
-        axios.post('http://localhost:3031/admincrud/gethoroscopedetailsupdate', { email }).then((res) => {
+        axios.post('http://localhost:3031/admincrud/gethoroscopedetailsupdate', { email }, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem('accesstoken')
+            }
+        }).then((res) => {
             setHoroscope(res.data)
         }).catch((err) => {
-            console.log(err)
+            notify(0, "Something went wrong..!")
         })
 
     }, [])
@@ -22,14 +27,18 @@ const Updatehoroscope = ({ email }) => {
         e.preventDefault()
         const formdata = new FormData(e.target);
         const data = Object.fromEntries(formdata.entries());
-
         const payLoad = { ...data, email }
 
-        axios.post('http://localhost:3031/admincrud/updatehoroscopedetails', payLoad).then((res) => {
+        axios.post('http://localhost:3031/admincrud/updatehoroscopedetails', payLoad, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem('accesstoken')
+            }
+        }).then((res) => {
             notify(1, "User horoscope details updated succesfully")
 
         }).catch((err) => {
-            console.log(err)
+            notify(0, "Something Wentt Wrong..!")
         })
     }
     return (

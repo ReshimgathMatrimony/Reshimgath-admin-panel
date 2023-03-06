@@ -23,7 +23,7 @@ const SuccessStories = () => {
           setSuccess(res.data)
         })
         .catch((err) => {
-          console.log(err);
+          notify(0, "Something went wrong..!")
         })
     }
     else {
@@ -37,11 +37,15 @@ const SuccessStories = () => {
   const handleDeleteStory = (id) => {
     const res = window.confirm("Delete you really want to delete?")
     if (res) {
-      axios.post('http://localhost:3031/admincrud/deletestory', { id }).then((res) => {
+      axios.post('http://localhost:3031/admincrud/deletestory', { id }, {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem('accesstoken')
+        }
+      }).then((res) => {
         setStatus(!status)
         notify(1, "Story Deleted Successfully..!")
       }).catch((err) => {
-        // console.log(err)
         notify(0, "Oops..Something went wrong!")
       })
     }

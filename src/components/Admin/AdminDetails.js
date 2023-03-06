@@ -18,12 +18,17 @@ const AdminDetails = () => {
 
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
-      axios.get("http://localhost:3031/admincrud/getalladmins")
+      axios.get("http://localhost:3031/admincrud/getalladmins", {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem('accesstoken')
+        }
+      })
         .then((res) => {
           setAdmin(res.data)
         })
         .catch((err) => {
-          console.log(err);
+          notify(0, "Oops..Something went wrong!")
         })
     }
     else {
@@ -41,14 +46,12 @@ const AdminDetails = () => {
         axios.post('http://localhost:3031/admincrud/deleteadmin', { id }, {
           headers: {
             "Content-Type": "application/json",
-            // "Authorization": localStorage.getItem('accesstoken')
-            "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNAZ21haWwuY29tIiwicm9vdCI6dHJ1ZSwiaWF0IjoxNjc2MTAwNTkxfQ.LzxSzuv2VSirs7mFNEbU7v_AFj4yM9mfVQC-H-H8wTo'
+            "Authorization": localStorage.getItem('accesstoken')
           }
         }).then((res) => {
           setStatus(!status)
           notify(1, "Admin Deleted Successfully..!")
         }).catch((err) => {
-          // console.log(err)
           notify(0, "Oops...Something went wrong!")
         })
       }
