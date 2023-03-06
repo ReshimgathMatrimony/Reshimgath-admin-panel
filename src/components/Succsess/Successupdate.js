@@ -32,7 +32,7 @@ const Successupdate = () => {
   }
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
-      axios.post('http://localhost:3031/admincrud/getonestory', { id: location.state.id }, {
+      axios.post('https://reshimgath-backend-qgcr.vercel.app/admincrud/getonestory', { id: location.state.id }, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": localStorage.getItem('accesstoken')
@@ -70,7 +70,7 @@ const Successupdate = () => {
     data.image.name === "" ? (newImg = prevImg) : (newImg = await imageFormator(data.image))
     const payLoad = { ...data, image: newImg, id: location.state.id }
 
-    axios.post('http://localhost:3031/admincrud/updatestories', payLoad, {
+    axios.post('https://reshimgath-backend-qgcr.vercel.app/updatestories', payLoad, {
       headers: {
         "Content-Type": "application/json",
         "Authorization": localStorage.getItem('accesstoken')

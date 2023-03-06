@@ -10,7 +10,7 @@ const Updatepartner = ({ email }) => {
 
     const [partner, setPartner] = useState({})
     useEffect(() => {
-        axios.post('http://localhost:3031/admincrud/getpartnerdetailsupdate', { email }, {
+        axios.post('https://reshimgath-backend-qgcr.vercel.app/admincrud/getpartnerdetailsupdate', { email }, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem('accesstoken')
@@ -30,7 +30,7 @@ const Updatepartner = ({ email }) => {
         const data = Object.fromEntries(formdata.entries());
         const payLoad = { ...data, email }
 
-        axios.post('http://localhost:3031/admincrud/updatepartnerdetails', payLoad, {
+        axios.post('https://reshimgath-backend-qgcr.vercel.app/updatepartnerdetails', payLoad, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem('accesstoken')

@@ -17,7 +17,7 @@ const PlanDetails = () => {
 
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
-      axios.get('http://localhost:3031/admincrud/getallplans').then((res) => {
+      axios.get('https://reshimgath-backend-qgcr.vercel.app/admincrud/getallplans').then((res) => {
         setPlanData(res.data)
       }).catch((err) => {
         notify(0, "oops..Something went wrong..")

@@ -14,7 +14,7 @@ const CustomerQueries = () => {
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
 
-      axios.get('http://localhost:3031/admincrud/customerqueries', {
+      axios.get('https://reshimgath-backend-qgcr.vercel.app/admincrud/customerqueries', {
         headers: {
           "Content-Type": "application/json",
           "Authorization": localStorage.getItem('accesstoken')

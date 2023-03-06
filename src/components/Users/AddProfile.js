@@ -101,7 +101,7 @@ const AddProfile = () => {
         const data1 = Object.fromEntries(formdata.entries());
         // console.log(data1)
         setMail(data1.email)
-        axios.post('http://localhost:3031/admincrud/register', data1, {
+        axios.post('https://reshimgath-backend-qgcr.vercel.app/admincrud/register', data1, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem('accesstoken')
@@ -120,7 +120,7 @@ const AddProfile = () => {
         const formdata = new FormData(e.target);
         const data2 = Object.fromEntries(formdata.entries());
         const payLoad = { ...data2, email: mail, image1: await imageFormator(data2.image1), image2: await imageFormator(data2.image2), image3: await imageFormator(data2.image3), country_name: data2.country_name.split(',')[1], state_name: data2.state_name.split(',')[1] }
-        axios.post('http://localhost:3031/admincrud/getbasicinfo', payLoad, {
+        axios.post('https://reshimgath-backend-qgcr.vercel.app/admincrud/getbasicinfo', payLoad, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem('accesstoken')
@@ -138,7 +138,7 @@ const AddProfile = () => {
         const formdata = new FormData(e.target);
         const data3 = Object.fromEntries(formdata.entries());
         const payLoad = { ...data3, email: mail }
-        axios.post('http://localhost:3031/admincrud/getfamilydetails', payLoad, {
+        axios.post('https://reshimgath-backend-qgcr.vercel.app/admincrud/getfamilydetails', payLoad, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem('accesstoken')
@@ -157,7 +157,7 @@ const AddProfile = () => {
         const data4 = Object.fromEntries(formdata.entries());
         // console.log(data4)
         const payLoad = { ...data4, email: mail }
-        axios.post('http://localhost:3031/admincrud/getpartnerprefrence', payLoad, {
+        axios.post('https://reshimgath-backend-qgcr.vercel.app/admincrud/getpartnerprefrence', payLoad, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem('accesstoken')
@@ -176,7 +176,7 @@ const AddProfile = () => {
         const data5 = Object.fromEntries(formdata.entries());
         // console.log(data5)
         const payLoad = { ...data5, email: mail, mangal: JSON.parse(data5.mangal) }
-        axios.post('http://localhost:3031/admincrud/gethoroscopedetails', payLoad, {
+        axios.post('https://reshimgath-backend-qgcr.vercel.app/admincrud/gethoroscopedetails', payLoad, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem('accesstoken')

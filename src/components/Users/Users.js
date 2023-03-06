@@ -27,7 +27,7 @@ const Users = () => {
   const deleteAdmin = (delId, userMail) => {
     const result = window.confirm("Do Your Really Want to Delete?" + userMail)
     if (result) {
-      axios.post('http://localhost:3031/admincrud/deletespecificuser', { id: delId }, {
+      axios.post('https://reshimgath-backend-qgcr.vercel.app/admincrud/deletespecificuser', { id: delId }, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": localStorage.getItem('accesstoken')
@@ -48,7 +48,7 @@ const Users = () => {
   const navigate = useNavigate()
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
-      axios.get('http://localhost:3031/admincrud/getallusersfortable', {
+      axios.get('https://reshimgath-backend-qgcr.vercel.app/admincrud/getallusersfortable', {
         headers: {
           "Content-Type": "application/json",
           "Authorization": localStorage.getItem('accesstoken')
@@ -72,7 +72,7 @@ const Users = () => {
   })
 
   const handleFilter = () => {
-    axios.post('http://localhost:3031/admincrud/getspecificuser', filterData).then((res) => {
+    axios.post('https://reshimgath-backend-qgcr.vercel.app/admincrud/getspecificuser', filterData).then((res) => {
       setData(res.data)
       console.log(res.data)
     }).catch((err) => {
@@ -81,7 +81,7 @@ const Users = () => {
   }
 
   const handlePaidUsers = () => {
-    axios.get('http://localhost:3031/admincrud/getpaidusers').then((res) => {
+    axios.get('https://reshimgath-backend-qgcr.vercel.app/admincrud/getpaidusers').then((res) => {
       setData(res.data)
       // console.log(res.data)
     }).catch((err) => {
@@ -90,7 +90,7 @@ const Users = () => {
   }
 
   const handleUnpaidUsers = () => {
-    axios.get('http://localhost:3031/admincrud/getunpaidusers').then((res) => {
+    axios.get('https://reshimgath-backend-qgcr.vercel.app/admincrud/getunpaidusers').then((res) => {
       setData(res.data)
       // console.log(res.data)
     }).catch((err) => {

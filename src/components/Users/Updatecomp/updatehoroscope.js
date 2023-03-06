@@ -11,7 +11,7 @@ const Updatehoroscope = ({ email }) => {
     const nadiArr = ['Aadi Nadi', 'Madhya Nadi', 'Antya Nadi']
     const [horoscope, setHoroscope] = useState({})
     useEffect(() => {
-        axios.post('http://localhost:3031/admincrud/gethoroscopedetailsupdate', { email }, {
+        axios.post('https://reshimgath-backend-qgcr.vercel.app/gethoroscopedetailsupdate', { email }, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem('accesstoken')
@@ -29,7 +29,7 @@ const Updatehoroscope = ({ email }) => {
         const data = Object.fromEntries(formdata.entries());
         const payLoad = { ...data, email }
 
-        axios.post('http://localhost:3031/admincrud/updatehoroscopedetails', payLoad, {
+        axios.post('https://reshimgath-backend-qgcr.vercel.app/updatehoroscopedetails', payLoad, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem('accesstoken')

@@ -18,7 +18,7 @@ const AdminDetails = () => {
 
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
-      axios.get("http://localhost:3031/admincrud/getalladmins", {
+      axios.get("https://reshimgath-backend-qgcr.vercel.app/admincrud/getalladmins", {
         headers: {
           "Content-Type": "application/json",
           "Authorization": localStorage.getItem('accesstoken')
@@ -38,12 +38,12 @@ const AdminDetails = () => {
   }, [status])
 
   const deleteUser = (id) => {
-    if (id === "63e77785088184f828fe0f36") {
+    if (id === "6405f20168965e509ec1b40a") {
       window.alert("You Cannot Delete this Master Admin")
     } else {
       const res = window.confirm("Do You Really Want to Delete user?")
       if (res) {
-        axios.post('http://localhost:3031/admincrud/deleteadmin', { id }, {
+        axios.post('https://reshimgath-backend-qgcr.vercel.app/admincrud/deleteadmin', { id }, {
           headers: {
             "Content-Type": "application/json",
             "Authorization": localStorage.getItem('accesstoken')

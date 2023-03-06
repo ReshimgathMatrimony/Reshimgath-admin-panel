@@ -7,7 +7,7 @@ const Updateregister = ({ email }) => {
     const notify = (p, msg) => p ? toast.success(msg) : toast.error(msg);
     const [registerdata, setRegisterdata] = useState({})
     useEffect(() => {
-        axios.post('http://localhost:3031/admincrud/getregisterdetailsupdate', { email }, {
+        axios.post('https://reshimgath-backend-qgcr.vercel.app/admincrud/getregisterdetailsupdate', { email }, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem('accesstoken')
@@ -24,7 +24,7 @@ const Updateregister = ({ email }) => {
         const formdata = new FormData(e.target);
         const data = Object.fromEntries(formdata.entries());
         const payLoad = { ...data, email }
-        axios.post('http://localhost:3031/admincrud/updateregisterdetails', payLoad, {
+        axios.post('https://reshimgath-backend-qgcr.vercel.app/admincrud/updateregisterdetails', payLoad, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem('accesstoken')
