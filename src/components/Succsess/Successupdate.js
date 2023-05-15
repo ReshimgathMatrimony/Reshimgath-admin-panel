@@ -70,7 +70,7 @@ const Successupdate = () => {
     data.image.name === "" ? (newImg = prevImg) : (newImg = await imageFormator(data.image))
     const payLoad = { ...data, image: newImg, id: location.state.id }
 
-    axios.post(`${REACT_APP_BASEURL}/updatestories`, payLoad, {
+    axios.post(`${process.env.REACT_APP_BASEURL}/updatestories`, payLoad, {
       headers: {
         "Content-Type": "application/json",
         "Authorization": localStorage.getItem('accesstoken')

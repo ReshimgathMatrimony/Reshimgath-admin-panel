@@ -33,7 +33,7 @@ const PlanDetails = () => {
   const handleServiceDelete = (id) => {
     const res = window.confirm('Are You Really Want to Delete..?')
     if (res) {
-      axios.post(`${REACT_APP_BASEURL}/admincrud/deleteplan`, { id }, {
+      axios.post(`${process.env.REACT_APP_BASEURL}/admincrud/deleteplan`, { id }, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": localStorage.getItem('accesstoken')

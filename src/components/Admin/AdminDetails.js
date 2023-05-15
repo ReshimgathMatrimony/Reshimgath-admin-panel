@@ -18,7 +18,7 @@ const AdminDetails = () => {
 
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
-      axios.get(`${REACT_APP_BASEURL}/admincrud/getalladmins`, {
+      axios.get(`${process.env.REACT_APP_BASEURL}/admincrud/getalladmins`, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": localStorage.getItem('accesstoken')

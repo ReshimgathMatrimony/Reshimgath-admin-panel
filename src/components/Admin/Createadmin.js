@@ -22,7 +22,7 @@ const Createadmin = () => {
         e.preventDefault()
         const formdata = new FormData(e.target);
         const data = Object.fromEntries(formdata.entries());
-        axios.post(`${REACT_APP_BASEURL}/admincrud/createadmin`, data, {
+        axios.post(`${process.env.REACT_APP_BASEURL}/admincrud/createadmin`, data, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem('accesstoken')

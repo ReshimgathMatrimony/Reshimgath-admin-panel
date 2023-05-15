@@ -11,7 +11,7 @@ const LoginForm = () => {
         e.preventDefault()
         const formdata = new FormData(e.target);
         const data = Object.fromEntries(formdata.entries());
-        axios.post(`${REACT_APP_BASEURL}/admincrud/loginadmin`, data, {
+        axios.post(`${process.env.REACT_APP_BASEURL}/admincrud/loginadmin`, data, {
             headers: {
                 "Content-Type": "application/json",
             }

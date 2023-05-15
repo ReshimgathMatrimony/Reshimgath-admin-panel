@@ -43,7 +43,7 @@ const Createplan = () => {
 
     const payLoad = { ...data, services: JSON.stringify(finalBucket), id: location.state.id, mediator: data.mediator ? (JSON.parse(data.mediator)) : (JSON.parse('false')) }
 
-    axios.post(`${REACT_APP_BASEURL}/admincrud/updateplan`, payLoad, {
+    axios.post(`${process.env.REACT_APP_BASEURL}/admincrud/updateplan`, payLoad, {
       headers: {
         "Content-Type": "application/json",
         "Authorization": localStorage.getItem('accesstoken')

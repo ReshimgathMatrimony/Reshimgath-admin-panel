@@ -25,7 +25,7 @@ const Createplan = () => {
     const formdata = new FormData(e.target);
     const data = Object.fromEntries(formdata.entries());
     const payLoad = { ...data, services: JSON.stringify(finalBucket) }
-    axios.post(`${REACT_APP_BASEURL}/admincrud/createplan`, payLoad, {
+    axios.post(`${process.env.REACT_APP_BASEURL}/admincrud/createplan`, payLoad, {
       headers: {
         "Content-Type": "application/json",
         "Authorization": localStorage.getItem('accesstoken')

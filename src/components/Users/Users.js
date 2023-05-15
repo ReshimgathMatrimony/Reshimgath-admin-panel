@@ -27,7 +27,7 @@ const Users = () => {
   const deleteAdmin = (delId, userMail) => {
     const result = window.confirm("Do Your Really Want to Delete?" + userMail)
     if (result) {
-      axios.post(`${REACT_APP_BASEURL}/admincrud/deletespecificuser`, { id: delId }, {
+      axios.post(`${process.env.REACT_APP_BASEURL}/admincrud/deletespecificuser`, { id: delId }, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": localStorage.getItem('accesstoken')
@@ -48,7 +48,7 @@ const Users = () => {
   const navigate = useNavigate()
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
-      axios.get(`${REACT_APP_BASEURL}/admincrud/getallusersfortable`, {
+      axios.get(`${process.env.REACT_APP_BASEURL}/admincrud/getallusersfortable`, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": localStorage.getItem('accesstoken')
@@ -72,7 +72,7 @@ const Users = () => {
   })
 
   const handleFilter = () => {
-    axios.post(`${REACT_APP_BASEURL}/admincrud/getspecificuser`, filterData).then((res) => {
+    axios.post(`${process.env.REACT_APP_BASEURL}/admincrud/getspecificuser`, filterData).then((res) => {
       setData(res.data)
       console.log(res.data)
     }).catch((err) => {
@@ -81,7 +81,7 @@ const Users = () => {
   }
 
   const handlePaidUsers = () => {
-    axios.get(`${REACT_APP_BASEURL}/admincrud/getpaidusers`).then((res) => {
+    axios.get(`${process.env.REACT_APP_BASEURL}/admincrud/getpaidusers`).then((res) => {
       setData(res.data)
       // console.log(res.data)
     }).catch((err) => {
@@ -90,7 +90,7 @@ const Users = () => {
   }
 
   const handleUnpaidUsers = () => {
-    axios.get(`${REACT_APP_BASEURL}/admincrud/getunpaidusers`).then((res) => {
+    axios.get(`${process.env.REACT_APP_BASEURL}/admincrud/getunpaidusers`).then((res) => {
       setData(res.data)
       // console.log(res.data)
     }).catch((err) => {

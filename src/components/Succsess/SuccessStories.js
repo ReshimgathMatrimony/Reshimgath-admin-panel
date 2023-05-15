@@ -37,7 +37,7 @@ const SuccessStories = () => {
   const handleDeleteStory = (id) => {
     const res = window.confirm("Delete you really want to delete?")
     if (res) {
-      axios.post(`${REACT_APP_BASEURL}/admincrud/deletestory`, { id }, {
+      axios.post(`${process.env.REACT_APP_BASEURL}/admincrud/deletestory`, { id }, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": localStorage.getItem('accesstoken')
