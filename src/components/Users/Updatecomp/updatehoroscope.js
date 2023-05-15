@@ -11,7 +11,7 @@ const Updatehoroscope = ({ email }) => {
     const nadiArr = ['Aadi Nadi', 'Madhya Nadi', 'Antya Nadi']
     const [horoscope, setHoroscope] = useState({})
     useEffect(() => {
-        axios.post(`${REACT_APP_BASEURL}/gethoroscopedetailsupdate`, { email }, {
+        axios.post(`${process.env.REACT_APP_BASEURL}/gethoroscopedetailsupdate`, { email }, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem('accesstoken')

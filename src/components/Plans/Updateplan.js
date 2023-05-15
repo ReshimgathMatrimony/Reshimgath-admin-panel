@@ -16,7 +16,7 @@ const Createplan = () => {
 
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
-      axios.post(`${REACT_APP_BASEURL}/admincrud/getsingleplan`, { id: location.state.id }, {
+      axios.post(`${process.env.REACT_APP_BASEURL}/admincrud/getsingleplan`, { id: location.state.id }, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": localStorage.getItem('accesstoken')

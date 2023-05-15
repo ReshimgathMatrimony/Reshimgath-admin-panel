@@ -17,7 +17,7 @@ const PlanDetails = () => {
 
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
-      axios.get(`${REACT_APP_BASEURL}/admincrud/getallplans`).then((res) => {
+      axios.get(`${process.env.REACT_APP_BASEURL}/admincrud/getallplans`).then((res) => {
         setPlanData(res.data)
       }).catch((err) => {
         notify(0, "oops..Something went wrong..")

@@ -43,7 +43,7 @@ const AdminDetails = () => {
     } else {
       const res = window.confirm("Do You Really Want to Delete user?")
       if (res) {
-        axios.post(`${REACT_APP_BASEURL}/admincrud/deleteadmin`, { id }, {
+        axios.post(`${process.env.REACT_APP_BASEURL}/admincrud/deleteadmin`, { id }, {
           headers: {
             "Content-Type": "application/json",
             "Authorization": localStorage.getItem('accesstoken')

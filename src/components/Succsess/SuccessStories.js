@@ -18,7 +18,7 @@ const SuccessStories = () => {
 
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
-      axios.get(`${REACT_APP_BASEURL}/admincrud/getstories`)
+      axios.get(`${process.env.REACT_APP_BASEURL}/admincrud/getstories`)
         .then((res) => {
           setSuccess(res.data)
         })
