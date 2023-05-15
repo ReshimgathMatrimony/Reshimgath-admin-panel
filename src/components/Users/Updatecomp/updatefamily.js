@@ -7,7 +7,7 @@ const Updatefamily = ({ email }) => {
 
     const [family, setFamily] = useState({})
     useEffect(() => {
-        axios.post(`${REACT_APP_BASEURL}/getfamilydetailsupdate`, { email }, {
+        axios.post(`${REACT_APP_BASEURL}/admincrud/getfamilydetailsupdate`, { email }, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem('accesstoken')
@@ -26,7 +26,7 @@ const Updatefamily = ({ email }) => {
         const data = Object.fromEntries(formdata.entries());
         const payLoad = { ...data, email }
 
-        axios.post(`${REACT_APP_BASEURL}/updatefamilydetails`, payLoad, {
+        axios.post(`${REACT_APP_BASEURL}/admincrud/updatefamilydetails`, payLoad, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem('accesstoken')

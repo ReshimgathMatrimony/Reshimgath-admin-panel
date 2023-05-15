@@ -30,7 +30,7 @@ const Updatepartner = ({ email }) => {
         const data = Object.fromEntries(formdata.entries());
         const payLoad = { ...data, email }
 
-        axios.post(`${REACT_APP_BASEURL}/updatepartnerdetails`, payLoad, {
+        axios.post(`${REACT_APP_BASEURL}/admincrud/updatepartnerdetails`, payLoad, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem('accesstoken')
