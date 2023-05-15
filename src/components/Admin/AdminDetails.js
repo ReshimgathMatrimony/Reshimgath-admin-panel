@@ -18,7 +18,7 @@ const AdminDetails = () => {
 
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
-      axios.get("https://reshimgath-backend-qgcr.vercel.app/admincrud/getalladmins", {
+      axios.get(`${REACT_APP_BASEURL}/admincrud/getalladmins`, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": localStorage.getItem('accesstoken')
@@ -43,7 +43,7 @@ const AdminDetails = () => {
     } else {
       const res = window.confirm("Do You Really Want to Delete user?")
       if (res) {
-        axios.post('https://reshimgath-backend-qgcr.vercel.app/admincrud/deleteadmin', { id }, {
+        axios.post(`${REACT_APP_BASEURL}/admincrud/deleteadmin`, { id }, {
           headers: {
             "Content-Type": "application/json",
             "Authorization": localStorage.getItem('accesstoken')

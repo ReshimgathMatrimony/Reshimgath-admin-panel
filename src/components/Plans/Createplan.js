@@ -25,7 +25,7 @@ const Createplan = () => {
     const formdata = new FormData(e.target);
     const data = Object.fromEntries(formdata.entries());
     const payLoad = { ...data, services: JSON.stringify(finalBucket) }
-    axios.post('https://reshimgath-backend-qgcr.vercel.app/admincrud/createplan', payLoad, {
+    axios.post(`${REACT_APP_BASEURL}/admincrud/createplan`, payLoad, {
       headers: {
         "Content-Type": "application/json",
         "Authorization": localStorage.getItem('accesstoken')

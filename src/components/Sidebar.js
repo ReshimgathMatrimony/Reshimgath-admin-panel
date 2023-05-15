@@ -37,9 +37,9 @@ const Sidebar = () => {
               <Link to='/customerqueries' className='nav-link text-dark mt-3'>Customer Queries</Link>
             </li>
 
-            <li className='nav-item w-100 mt-4'>
+            {/* <li className='nav-item w-100 mt-4'>
               <Link to='https://ishadigital.com' target="_blank" className='text-white text-decoration-none'>Designed & Developed By Isha Business Solution</Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </nav>

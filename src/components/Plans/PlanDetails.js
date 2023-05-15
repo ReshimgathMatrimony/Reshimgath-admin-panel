@@ -17,7 +17,7 @@ const PlanDetails = () => {
 
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
-      axios.get('https://reshimgath-backend-qgcr.vercel.app/admincrud/getallplans').then((res) => {
+      axios.get(`${REACT_APP_BASEURL}/admincrud/getallplans`).then((res) => {
         setPlanData(res.data)
       }).catch((err) => {
         notify(0, "oops..Something went wrong..")
@@ -33,7 +33,7 @@ const PlanDetails = () => {
   const handleServiceDelete = (id) => {
     const res = window.confirm('Are You Really Want to Delete..?')
     if (res) {
-      axios.post('http://localhost:3031/admincrud/deleteplan', { id }, {
+      axios.post(`${REACT_APP_BASEURL}/admincrud/deleteplan`, { id }, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": localStorage.getItem('accesstoken')

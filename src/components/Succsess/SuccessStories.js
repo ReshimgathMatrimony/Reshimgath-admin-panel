@@ -18,7 +18,7 @@ const SuccessStories = () => {
 
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
-      axios.get("https://reshimgath-backend-qgcr.vercel.app/admincrud/getstories")
+      axios.get(`${REACT_APP_BASEURL}/admincrud/getstories`)
         .then((res) => {
           setSuccess(res.data)
         })
@@ -37,7 +37,7 @@ const SuccessStories = () => {
   const handleDeleteStory = (id) => {
     const res = window.confirm("Delete you really want to delete?")
     if (res) {
-      axios.post('https://reshimgath-backend-qgcr.vercel.app/admincrud/deletestory', { id }, {
+      axios.post(`${REACT_APP_BASEURL}/admincrud/deletestory`, { id }, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": localStorage.getItem('accesstoken')

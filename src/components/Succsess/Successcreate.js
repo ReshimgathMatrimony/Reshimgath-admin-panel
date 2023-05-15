@@ -38,7 +38,7 @@ const Successcreate = () => {
     const payLoad = { ...data, image: await imageFormator(data.image) }
     console.log(payLoad);
 
-    axios.post('https://reshimgath-backend-qgcr.vercel.app/admincrud/addstories', payLoad, {
+    axios.post(`${REACT_APP_BASEURL}/admincrud/addstories`, payLoad, {
       headers: {
         "Content-Type": 'application/json'
       }

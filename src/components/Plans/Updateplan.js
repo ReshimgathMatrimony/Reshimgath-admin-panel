@@ -16,7 +16,7 @@ const Createplan = () => {
 
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
-      axios.post('https://reshimgath-backend-qgcr.vercel.app/admincrud/getsingleplan', { id: location.state.id }, {
+      axios.post(`${REACT_APP_BASEURL}/admincrud/getsingleplan`, { id: location.state.id }, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": localStorage.getItem('accesstoken')
@@ -43,7 +43,7 @@ const Createplan = () => {
 
     const payLoad = { ...data, services: JSON.stringify(finalBucket), id: location.state.id, mediator: data.mediator ? (JSON.parse(data.mediator)) : (JSON.parse('false')) }
 
-    axios.post('https://reshimgath-backend-qgcr.vercel.app/admincrud/updateplan', payLoad, {
+    axios.post(`${REACT_APP_BASEURL}/admincrud/updateplan`, payLoad, {
       headers: {
         "Content-Type": "application/json",
         "Authorization": localStorage.getItem('accesstoken')

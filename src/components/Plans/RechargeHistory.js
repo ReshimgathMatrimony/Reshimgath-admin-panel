@@ -13,7 +13,7 @@ const RechargeHistory = () => {
 
     useEffect(() => {
         if (localStorage.getItem('accesstoken')) {
-            axios.get('https://reshimgath-backend-qgcr.vercel.app/admincrud/gerrechargelist', {
+            axios.get(`${REACT_APP_BASEURL}/admincrud/gerrechargelist`, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": localStorage.getItem('accesstoken')

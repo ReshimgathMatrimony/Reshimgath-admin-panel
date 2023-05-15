@@ -27,7 +27,7 @@ const RechargeUser = () => {
   useEffect(() => {
     if (localStorage.getItem('accesstoken')) {
 
-      axios.get('https://reshimgath-backend-qgcr.vercel.app/admincrud/getplannamesonly', {
+      axios.get(`${REACT_APP_BASEURL}/admincrud/getplannamesonly`, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": localStorage.getItem('accesstoken')
@@ -47,7 +47,7 @@ const RechargeUser = () => {
 
   const handlePlanSelect = (selectedId) => {
     if (selectedId !== 'temp') {
-      axios.post('https://reshimgath-backend-qgcr.vercel.app/admincrud/getsingleplan', { id: selectedId }, {
+      axios.post(`${REACT_APP_BASEURL}/admincrud/getsingleplan`, { id: selectedId }, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": localStorage.getItem('accesstoken')
@@ -82,7 +82,7 @@ const RechargeUser = () => {
       setLoading(true)
       const payLoad = { email: location.state.email, coins: plan.contact_count + location.state.coins, plan: plan.price, days: changeDate() + plan.expiresinMonths * 30, details: JSON.stringify(plan.services), firstname: location.state.firstname, }
       // console.log(payLoad)
-      axios.post('https://reshimgath-backend-qgcr.vercel.app/admincrud/rechargeuser', payLoad, {
+      axios.post(`${REACT_APP_BASEURL}/admincrud/rechargeuser`, payLoad, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": localStorage.getItem('accesstoken')
