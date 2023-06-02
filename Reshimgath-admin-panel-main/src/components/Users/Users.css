@@ -1,0 +1,43 @@
+.createUserBtn {
+    color: #fff;
+    background-color: #e12e56;
+    border: none;
+}
+
+.createUserBtn:hover {
+    color: #fff;
+    background-color: #e74669;
+}
+
+.unpaidUserBtn {
+    color: #fff;
+    background-color: red;
+    border: none;
+}
+
+.unpaidUserBtn:hover {
+    color: #fff;
+    background-color: rgb(230, 35, 35);
+}
+
+.unpaidUserBtn {
+    color: #fff;
+    background-color: red;
+    border: none;
+}
+
+.unpaidUserBtn:hover {
+    color: #fff;
+    background-color: rgb(230, 35, 35);
+}
+
+.paidUserBtn {
+    color: #fff;
+    background-color: green;
+    border: none;
+}
+
+.paidUserBtn:hover {
+    color: #fff;
+    background-color: rgb(8, 154, 8);
+}

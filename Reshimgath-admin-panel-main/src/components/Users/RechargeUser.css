@@ -1,0 +1,50 @@
+.includes_main_div {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 12px 12px 12px 17px;
+}
+
+.recharge_user_mail {
+    background-color: #e12e56 !important;
+    color: #fff;
+    padding: 8px;
+}
+
+.includes_main_div {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    row-gap: 20px;
+}
+
+#plan_includes {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    text-decoration: none;
+    list-style-type: none;
+    padding: 0;
+    max-width: 0;
+}
+
+#plan_includes li {
+    display: flex;
+    column-gap: 10px;
+    width: 400px;
+}
+
+.rechargeBtn {
+    border: none;
+    color: #fff;
+    background-color: #e12e56;
+    padding: 10px;
+    width: 95%;
+    margin: auto;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.rechargeBtn:hover {
+    background-color: #e12e55f0;
+    cursor: pointer;
+}
