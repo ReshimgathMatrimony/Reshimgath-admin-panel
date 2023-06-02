@@ -49,24 +49,24 @@ const Updateregister = ({ email }) => {
                     <form onSubmit={handleRegisterdata} autoComplete='off'>
                         <div className="row">
                             <div className="col-lg-6  mb-3">
-                                <input type="text" value={registerdata.firstname} onChange={(e) => { setRegisterdata({ ...registerdata, firstname: e.target.value }) }} className="form-control" name='firstname' placeholder='First Name' />
+                                <input type="text" value={registerdata.firstname} onChange={(e) => { setRegisterdata({ ...registerdata, firstname: e.target.value }) }} className="form-control" name='firstname' placeholder='First Name' required/>
                             </div>
                             <div className="col-lg-6  mb-3">
-                                <input type="text" value={registerdata.lastname} onChange={(e) => { setRegisterdata({ ...registerdata, lastname: e.target.value }) }} className="form-control" name='lastname' id='lastname' placeholder='Last Name' />
+                                <input type="text" value={registerdata.lastname} onChange={(e) => { setRegisterdata({ ...registerdata, lastname: e.target.value }) }} className="form-control" name='lastname' id='lastname' placeholder='Last Name' required/>
                             </div>
                         </div>
 
                         <div className="col-lg-12 mb-3">
-                            <input type="email" value={registerdata.email} className="form-control" name="email" placeholder='Email Id' />
+                            <input type="email" value={registerdata.email} className="form-control" name="email" placeholder='Email Id' required/>
                         </div>
 
                         <div className="row">
                             <div className="col-lg-6 mb-4">
-                                <input type="number" value={registerdata.mobile} onChange={(e) => { setRegisterdata({ ...registerdata, mobile: e.target.value }) }} className="form-control" name='mobile' placeholder='Mobile Number' />
+                                <input type="number" value={registerdata.mobile} onChange={(e) => { setRegisterdata({ ...registerdata, mobile: e.target.value }) }} className="form-control" name='mobile' placeholder='Mobile Number' required/>
                             </div>
 
                             <div className="col-lg-6 mb-4">
-                                <select name="gender" value={registerdata.gender} onChange={(e) => { setRegisterdata({ ...registerdata, gender: e.target.value }) }} className="form-select form-select" aria-label=".form-select-sm example">
+                                <select name="gender" value={registerdata.gender} onChange={(e) => { setRegisterdata({ ...registerdata, gender: e.target.value }) }} className="form-select form-select" aria-label=".form-select-sm example" required>
                                     <option selected>Gender</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
