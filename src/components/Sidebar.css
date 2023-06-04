@@ -1,0 +1,32 @@
+@font-face {
+    font-family: titleFont;
+    src: url('../Fonts/BerkshireSwash-Regular.ttf');
+}
+
+.navbar {
+    background-color: #e12e56;
+    height: 100%;
+    transition: 0.4s;
+}
+
+.sidebar_brand h3 {
+    font-family: titleFont;
+}
+
+.sidebar_brand::after {
+    display: block;
+    content: "";
+    border-bottom: 3px solid #fff;
+    width: 9rem;
+    margin: 1rem auto;
+}
+
+.nav-link {
+    font-size: 1.20em;
+}
+
+.nav-link:active,
+.nav-link:focus,
+.nav-link:hover {
+    color: white !important;
+}

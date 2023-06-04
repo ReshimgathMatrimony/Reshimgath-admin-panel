@@ -1,0 +1,36 @@
+.createuser_div {
+    box-shadow: 0 .4rem .8rem 0 rgba(0, 0, 0, 0.2);
+}
+
+.saveBtn {
+    background-color: #e12e56;
+    color: #fff;
+    width: 100%;
+}
+
+.saveBtn:hover {
+    background-color: #e12e55ea;
+    color: #fff;
+    cursor: pointer;
+}
+
+.result_profile_title {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.result_profile_div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+    background-color: green;
+    color: #fff;
+    padding: 9px;
+}
+
+.result_row {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
