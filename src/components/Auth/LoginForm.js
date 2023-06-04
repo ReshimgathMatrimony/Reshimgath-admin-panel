@@ -34,12 +34,12 @@ const LoginForm = () => {
                             <p className="mt-3 text-white">( Please Enter Credentials for Login )</p>
                             <div className="mb-3 mt-5">
                                 <label for="loginMail" className="form-label text-white fw-bold">Email ID</label><br />
-                                <input type="email" id="loginMail" name="email" class="form-control" />
+                                <input type="email" id="loginMail" name="email" class="form-control" required />
 
                             </div>
                             <div className="mb-3">
                                 <label for="loginPassword" className="form-label text-white fw-bold">Password</label><br />
-                                <input type="password" id="loginPassword" name="password" class="form-control" />
+                                <input type="password" id="loginPassword" name="password" class="form-control" required />
                             </div>
                             {
                                 showError ? (<div className="mt-4 mb-3">

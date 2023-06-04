@@ -58,11 +58,11 @@ const Createadmin = () => {
                     <form className='mt-5 createadmin_div p-3' onSubmit={handleSubmit} autoComplete="off">
                         <ToastContainer position="bottom-left" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
                         <div className="mt-4 mb-3">
-                            <input name='email' type="email" placeholder='Admin Email' className="form-control" />
+                            <input name='email' type="email" placeholder='Admin Email' className="form-control" required />
                         </div>
 
                         <div className="mb-4">
-                            <input name='password' type="password" placeholder='Admin Password' className="form-control" />
+                            <input name='password' type="password" placeholder='Admin Password' className="form-control" required />
                         </div>
 
                         <div className="mb-4">

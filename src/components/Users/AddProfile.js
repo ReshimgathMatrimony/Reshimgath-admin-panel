@@ -230,29 +230,29 @@ const AddProfile = () => {
                                     <form onSubmit={handleRegister} autoComplete='off'>
                                         <div className="row">
                                             <div className="col-lg-6  mb-3">
-                                                <input type="text" className="form-control" name='firstname' id='firstname' placeholder='First Name' />
+                                                <input type="text" className="form-control" name='firstname' id='firstname' placeholder='First Name' required />
                                             </div>
                                             <div className="col-lg-6  mb-3">
-                                                <input type="text" className="form-control" name='lastname' id='lastname' placeholder='Last Name' />
+                                                <input type="text" className="form-control" name='lastname' id='lastname' placeholder='Last Name' required />
                                             </div>
                                         </div>
 
                                         <div className="col-lg-12 mb-3">
-                                            <input type="email" className="form-control" id="email" name="email" placeholder='Email Id' />
+                                            <input type="email" className="form-control" id="email" name="email" placeholder='Email Id' required />
                                         </div>
 
                                         <div className="col-lg-12 input-group mb-3">
-                                            <input type={pass ? "text" : "password"} className="form-control" id="password" name="password" placeholder='Create New Password' />
+                                            <input type={pass ? "text" : "password"} className="form-control" id="password" name="password" placeholder='Create New Password' required />
                                             <span className="input-group-text" id="password" onClick={() => { setPass(!pass) }}> {pass ? <img src={HiddenEyeIcon} alt="Image" /> : <img src={eyeIcon} alt="Image" />}</span>
                                         </div>
 
                                         <div className="col-lg-12 mb-3">
-                                            <input type="password" className="form-control" id="confirm_passwd" name="confirm_passwd" placeholder='Confirm Password' />
+                                            <input type="password" className="form-control" id="confirm_passwd" name="confirm_passwd" placeholder='Confirm Password' required />
                                         </div>
 
                                         <div className="row">
                                             <div className="col-lg-6 mb-4">
-                                                <input type="number" className="form-control" name='mobile' id='mobile' placeholder='Mobile Number' />
+                                                <input type="number" className="form-control" name='mobile' id='mobile' placeholder='Mobile Number' required />
                                             </div>
 
                                             <div className="col-lg-6 mb-4">

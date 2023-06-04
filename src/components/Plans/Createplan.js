@@ -79,11 +79,11 @@ const Createplan = () => {
             <h4 className='mb-5'>Add New Plan</h4>
 
             <div className="mb-4">
-              <input type="text" name='price' placeholder='Plan Name With Price (Example: Management Plan - 12999/-)' className="form-control" />
+              <input type="text" name='price' placeholder='Plan Name With Price (Example: Management Plan - 12999/-)' className="form-control" required />
             </div>
 
             <div className="mb-4">
-              <input type="text" onChange={(e) => { setInitialData(e.target.value) }} placeholder='Plan Description' className="form-control" />
+              <input type="text" onChange={(e) => { setInitialData(e.target.value) }} placeholder='Plan Description' className="form-control" required />
               <input type="button" className='bucket_button' onClick={handleBucketData} value="Add Description" />
             </div>
 

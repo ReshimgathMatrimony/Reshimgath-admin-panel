@@ -77,23 +77,23 @@ const Successcreate = () => {
             <div className="row">
               <div className="col-lg-6 mb-3">
                 <p className='d-flex fw-bold mt-2'>Name of Bride</p>
-                <input name='women' type="text" placeholder='Name' className="form-control" />
+                <input name='women' type="text" placeholder='Name' className="form-control" required />
               </div>
 
               <div className="col-lg-6 mb-3">
                 <p className='d-flex fw-bold mt-2'>Name of Groom</p>
-                <input name='men' type="text" placeholder='Name' className="form-control" />
+                <input name='men' type="text" placeholder='Name' className="form-control" required />
               </div>
             </div>
 
             <div className='mb-3'>
               <p className='d-flex fw-bold mt-3'>Image of Bride & Groom: (Width:360 x Height:330 Pixels)</p>
-              <input name='image' type="file" className="form-control" />
+              <input name='image' type="file" className="form-control" required />
             </div>
 
             <div className="mb-3">
               <p className='d-flex fw-bold mt-4'>Date Of Marriage</p>
-              <input name='date' type="date" id="date" className="form-control" />
+              <input name='date' type="date" id="date" className="form-control" required />
             </div>
 
             <button type="submit" className="btn createAdminBtn mt-4">Submit Details</button>
