@@ -72,16 +72,26 @@ const Users = () => {
   })
 
   const handleFilter = () => {
-    axios.post(`${process.env.REACT_APP_BASEURL}/admincrud/getspecificuser`, filterData).then((res) => {
+    axios.post(`${process.env.REACT_APP_BASEURL}/admincrud/getspecificuser`, filterData, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": localStorage.getItem('accesstoken')
+      }
+    }).then((res) => {
       setData(res.data)
-      console.log(res.data)
+      // console.log(res.data)
     }).catch((err) => {
       console.log(err)
     })
   }
 
   const handlePaidUsers = () => {
-    axios.get(`${process.env.REACT_APP_BASEURL}/admincrud/getpaidusers`).then((res) => {
+    axios.get(`${process.env.REACT_APP_BASEURL}/admincrud/getpaidusers`, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": localStorage.getItem('accesstoken')
+      }
+    }).then((res) => {
       setData(res.data)
       // console.log(res.data)
     }).catch((err) => {
@@ -90,7 +100,12 @@ const Users = () => {
   }
 
   const handleUnpaidUsers = () => {
-    axios.get(`${process.env.REACT_APP_BASEURL}/admincrud/getunpaidusers`).then((res) => {
+    axios.get(`${process.env.REACT_APP_BASEURL}/admincrud/getunpaidusers`, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": localStorage.getItem('accesstoken')
+      }
+    }).then((res) => {
       setData(res.data)
       // console.log(res.data)
     }).catch((err) => {

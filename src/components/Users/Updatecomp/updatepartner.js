@@ -68,6 +68,7 @@ const Updatepartner = ({ email }) => {
                             <div className="col-lg-4 mb-4">
                                 <select name="occupation_pref" value={partner.occupation_pref} onChange={(e) => { setPartner({ ...partner, occupation_pref: e.target.value }) }} className="form-select form-select" aria-label=".form-select-sm example">
                                     <option value="" selected>-- Occupation --</option>
+                                    <option value="NA">N/A</option>
                                     <option value="IT Software">IT Software</option>
                                     <option value="Business">Business</option>
                                     <option value="Lawyer">Lawyer</option>
@@ -83,6 +84,7 @@ const Updatepartner = ({ email }) => {
                             <div className="col-lg-4 mb-4">
                                 <select name="salary_pref" value={partner.salary_pref} onChange={(e) => { setPartner({ ...partner, salary_pref: e.target.value }) }} className="form-select form-select" aria-label=".form-select-sm example">
                                     <option valuee="" selected>-- Salary / Annual Package --</option>
+                                    <option value="NA">N/A</option>
                                     <option value="Below 1 Lack">Below 1 Lack</option>
                                     <option value="1 to 3 Lack">1 to 3 Lack</option>
                                     <option value="3 to 6 Lack">3 to 6 Lack</option>
@@ -107,7 +109,7 @@ const Updatepartner = ({ email }) => {
 
                             <div className="col-lg-4 mb-4">
                                 <select name="height_pref" value={partner.height_pref} onChange={(e) => { setPartner({ ...partner, height_pref: e.target.value }) }} className="form-select form-select" aria-label=".form-select-sm example">
-                                    <option selected>-- Height --</option>
+                                    <option value="" selected>-- Height --</option>
                                     {
                                         heightdata?.map((val, index) => {
                                             return (
@@ -124,7 +126,7 @@ const Updatepartner = ({ email }) => {
 
                             <div className="col-lg-4 mb-4">
                                 <select name="religion_pref" value={partner.religion_pref} onChange={(e) => { setPartner({ ...partner, religion_pref: e.target.value }) }} className="form-select form-select" aria-label=".form-select-sm example">
-                                    <option selected>-- Religon --</option>
+                                    <option value="" selected>-- Religon --</option>
                                     {
                                         religion?.map((val, id) => {
                                             return (

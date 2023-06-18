@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 const Updatehoroscope = ({ email }) => {
     const notify = (p, msg) => p ? toast.success(msg) : toast.error(msg);
 
-    const rashiArr = ['Mesh', 'Vrishabh', 'Mithun', 'Kark', 'Sinh', 'Kanya', 'Tula', 'Vrishchik'];
+    const rashiArr = ['Dhanu', 'Makar', 'Mesh', 'Vrishabh', 'Mithun', 'Kark', 'Sinh', 'Kanya', 'Tula', 'Vrishchik'];
     const nakshtraArr = ['Ashwini', 'Bharani', 'Krittika', 'Rohini', 'Mrigashira', 'Ardra', 'Punarvasu', 'Pushya', 'Ashlesha', 'Magha', 'Purva Phalguni', 'Uttara', 'Phalguni', 'Hasta', 'Chitra', 'Swati', 'Vishaka', 'Anurada', 'Jyeshta', 'Mula', 'Purva Ashadha', 'Uttara Ashadha', 'Shravana', 'Dhanishta', 'Shatabhishak', 'Purva Bhadrapada', 'Uttara Bhadrapada', 'Revati']
     const ganArr = ['manav gan', 'dev gan', 'rakshas gan'];
     const nadiArr = ['Aadi Nadi', 'Madhya Nadi', 'Antya Nadi']
@@ -51,7 +51,7 @@ const Updatehoroscope = ({ email }) => {
                         <div className="row">
                             <div className="col-lg-4 mb-4">
                                 <select name="rashi" value={horoscope.rashi} onChange={(e) => { setHoroscope({ ...horoscope, rashi: e.target.value }) }} className="form-select form-select" aria-label=".form-select-sm example">
-                                    <option selected>-- Rashi --</option>
+                                    <option value="" selected>-- Rashi --</option>
                                     {
                                         rashiArr?.map((val, id) => {
                                             return (
@@ -64,7 +64,7 @@ const Updatehoroscope = ({ email }) => {
 
                             <div className="col-lg-4 mb-4">
                                 <select name="nakshatra" value={horoscope.nakshatra} onChange={(e) => { setHoroscope({ ...horoscope, nakshatra: e.target.value }) }} className="form-select form-select" aria-label=".form-select-sm example">
-                                    <option selected>-- Nakshatra --</option>
+                                    <option value="" selected>-- Nakshatra --</option>
                                     {
                                         nakshtraArr?.map((val, id) => {
                                             return (
@@ -78,7 +78,7 @@ const Updatehoroscope = ({ email }) => {
 
                             <div className="col-lg-4 mb-4">
                                 <select name="mangal" value={horoscope.mangal} onChange={(e) => { setHoroscope({ ...horoscope, mangal: e.target.value }) }} className="form-select form-select" aria-label=".form-select-sm example">
-                                    <option selected>-- Mangal --</option>
+                                    <option value="" selected>-- Mangal --</option>
                                     <option value="true">Yes</option>
                                     <option value="false">No</option>
                                 </select>
@@ -103,7 +103,7 @@ const Updatehoroscope = ({ email }) => {
                         <div className="row">
                             <div className="col-lg-4 mb-4">
                                 <select name="nadi" value={horoscope.nadi} onChange={(e) => { setHoroscope({ ...horoscope, nadi: e.target.value }) }} className="form-select form-select" aria-label="form-select-sm example">
-                                    <option selected>-- Nadi --</option>
+                                    <option value="" selected>-- Nadi --</option>
                                     {
                                         nadiArr?.map((val, id) => {
                                             return (
@@ -122,7 +122,7 @@ const Updatehoroscope = ({ email }) => {
 
                             <div className="col-lg-4 mb-4">
                                 <select name="gan" value={horoscope.gan} onChange={(e) => { setHoroscope({ ...horoscope, gan: e.target.value }) }} className="form-select form-select" aria-label=".form-select-sm example">
-                                    <option selected>-- Gan --</option>
+                                    <option value="" selected>-- Gan --</option>
                                     {
                                         ganArr?.map((val, id) => {
                                             return (

@@ -14,9 +14,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 
 const AddProfile = () => {
-    const rashiArr = ['Mesh', 'Vrishabh', 'Mithun', 'Kark', 'Sinh', 'Kanya', 'Tula', 'Vrishchik'];
+    const rashiArr = ['Makar', 'Dhanu', 'Mesh', 'Vrishabh', 'Mithun', 'Kark', 'Sinh', 'Kannya', 'Tula', 'Vrishchik'];
     const nakshtraArr = ['Ashwini', 'Bharani', 'Krittika', 'Rohini', 'Mrigashira', 'Ardra', 'Punarvasu', 'Pushya', 'Ashlesha', 'Magha', 'Purva Phalguni', 'Uttara', 'Phalguni', 'Hasta', 'Chitra', 'Swati', 'Vishaka', 'Anurada', 'Jyeshta', 'Mula', 'Purva Ashadha', 'Uttara Ashadha', 'Shravana', 'Dhanishta', 'Shatabhishak', 'Purva Bhadrapada', 'Uttara Bhadrapada', 'Revati']
-    const ganArr = ['manav gan', 'dev gan', 'rakshas gan'];
+    const ganArr = ['Manav gan', 'Dev gan', 'Rakshas gan'];
     const nadiArr = ['Aadi Nadi', 'Madhya Nadi', 'Antya Nadi']
 
     const navigate = useNavigate()
@@ -443,8 +443,9 @@ const AddProfile = () => {
 
                                             <div className="col-lg-4 mb-4">
                                                 <select name="maritalStatus" className="form-select form-select" aria-label=".form-select-sm example">
-                                                    <option selected>-- Marital Status --</option>
+                                                    <option value="" selected>-- Marital Status --</option>
                                                     <option value="Single">Single</option>
+                                                    <option value="Divorced">Divorced</option>
                                                     <option value="Widow">Widow</option>
                                                     <option value="Widower">Widower</option>
 

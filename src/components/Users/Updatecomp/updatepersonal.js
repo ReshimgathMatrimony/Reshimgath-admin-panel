@@ -192,7 +192,7 @@ const Updatepersonal = ({ email }) => {
 
                             <div className="col-lg-4 mb-4">
                                 <select name="complexion" value={peronsladata.complexion} onChange={(e) => { setperonslaData({ ...peronsladata, complexion: e.target.value }) }} className="form-select form-select" aria-label=".form-select-sm example">
-                                    <option selected>-- Complexion --</option>
+                                    <option value="" selected>-- Complexion --</option>
                                     <option value="Extremely fair skin">Extremely Fair Skin</option>
                                     <option value="Fair Skin">Fair Skin</option>
                                     <option value="Medium Skin">Medium Skin</option>
@@ -205,7 +205,7 @@ const Updatepersonal = ({ email }) => {
                         <div className="row">
                             <div className="col-lg-4 mb-4">
                                 <select name="disablity" value={peronsladata.disablity} onChange={(e) => { setperonslaData({ ...peronsladata, disablity: e.target.value }) }} className="form-select form-select">
-                                    <option selected>-- Disability --</option>
+                                    <option value="" selected>-- Disability --</option>
                                     <option value="None">None</option>
                                     <option value="Blind">Blind</option>
                                     <option value="Handicap">Handicap</option>
@@ -215,7 +215,8 @@ const Updatepersonal = ({ email }) => {
 
                             <div className="col-lg-4 mb-4">
                                 <select name="maritalStatus" value={peronsladata.maritalStatus} onChange={(e) => { setperonslaData({ ...peronsladata, maritalStatus: e.target.value }) }} className="form-select form-select" aria-label=".form-select-sm example">
-                                    <option selected>-- Marital Status --</option>
+                                    <option value="" selected>-- Marital Status --</option>
+                                    <option value="Divorced">Divorced</option>
                                     <option value="Single">Single</option>
                                     <option value="Widow">Widow</option>
                                     <option value="Widower">Widower</option>
@@ -225,7 +226,7 @@ const Updatepersonal = ({ email }) => {
 
                             <div className="col-lg-4 mb-4">
                                 <select name="childrens_count" value={peronsladata.childrens_count} onChange={(e) => { setperonslaData({ ...peronsladata, childrens_count: e.target.value }) }} className="form-select form-select" aria-label=".form-select-sm example">
-                                    <option selected>-- If Widow, Childrens --</option>
+                                    <option value="" selected>-- If Widow, Childrens --</option>
                                     <option value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>

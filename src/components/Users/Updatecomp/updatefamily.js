@@ -112,7 +112,7 @@ const Updatefamily = ({ email }) => {
                             <div className="col-lg-3 d-flex mb-4">
                                 <label htmlFor="sister_status" style={{ color: "black" }}>Married&emsp;</label>
                                 <select className="form-select form-select" name="sister_status" value={family.sister_status} onChange={(e) => { setFamily({ ...family, sister_status: e.target.value }) }} aria-label=".form-select-sm example">
-                                    <option value="null">--Select--</option>
+                                    <option value="">--Select--</option>
                                     <option value="yes">Yes</option>
                                     <option value="no">No</option>
                                 </select>
@@ -127,7 +127,7 @@ const Updatefamily = ({ email }) => {
 
                             <div className="col-lg-3 mb-4">
                                 <select name="own_house" value={family.own_house} onChange={(e) => { setFamily({ ...family, own_house: e.target.value }) }} className="form-select form-select" aria-label=".form-select-sm example">
-                                    <option selected>-- Own A House --</option>
+                                    <option value="" selected>-- Own A House --</option>
                                     <option value="yes">Yes</option>
                                     <option value="no">No</option>
                                 </select>
@@ -135,7 +135,7 @@ const Updatefamily = ({ email }) => {
 
                             <div className="col-lg-3 mb-4">
                                 <select name="own_farm" value={family.own_farm} onChange={(e) => { setFamily({ ...family, own_farm: e.target.value }) }} className="form-select form-select" aria-label=".form-select-sm example">
-                                    <option selected>-- Own A Farm --</option>
+                                    <option value="" selected>-- Own A Farm --</option>
                                     <option value="yes">Yes</option>
                                     <option value="no">No</option>
                                 </select>
@@ -143,7 +143,7 @@ const Updatefamily = ({ email }) => {
 
                             <div className="col-lg-3 mb-4">
                                 <select name="own_plot" value={family.own_plot} onChange={(e) => { setFamily({ ...family, own_plot: e.target.value }) }} className="form-select form-select" aria-label=".form-select-sm example">
-                                    <option selected>-- Own A Plot --</option>
+                                    <option value="" selected>-- Own A Plot --</option>
                                     <option value="yes">Yes</option>
                                     <option value="no">No</option>
                                 </select>
@@ -151,7 +151,7 @@ const Updatefamily = ({ email }) => {
 
                             <div className="col-lg-3 mb-4">
                                 <select name="other_prop" value={family.other_prop} onChange={(e) => { setFamily({ ...family, other_prop: e.target.value }) }} className="form-select form-select" aria-label=".form-select-sm example">
-                                    <option selected>-- Other Property --</option>
+                                    <option value="" selected>-- Other Property --</option>
                                     <option value="yes">Yes</option>
                                     <option value="no">No</option>
                                 </select>
