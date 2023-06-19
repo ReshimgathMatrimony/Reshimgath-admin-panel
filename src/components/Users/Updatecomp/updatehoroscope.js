@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 const Updatehoroscope = ({ email }) => {
     const notify = (p, msg) => p ? toast.success(msg) : toast.error(msg);
 
-    const rashiArr = ['Dhanu', 'Makar', 'Mesh', 'Vrishabh', 'Mithun', 'Kark', 'Sinh', 'Kanya', 'Tula', 'Vrishchik'];
+    const rashiArr = ['Kumbha', 'Meen', 'Dhanu', 'Makar', 'Mesh', 'Vrishabh', 'Mithun', 'Kark', 'Sinh', 'Kanya', 'Tula', 'Vrishchik'];
     const nakshtraArr = ['Ashwini', 'Bharani', 'Krittika', 'Rohini', 'Mrigashira', 'Ardra', 'Punarvasu', 'Pushya', 'Ashlesha', 'Magha', 'Purva Phalguni', 'Uttara', 'Phalguni', 'Hasta', 'Chitra', 'Swati', 'Vishaka', 'Anurada', 'Jyeshta', 'Mula', 'Purva Ashadha', 'Uttara Ashadha', 'Shravana', 'Dhanishta', 'Shatabhishak', 'Purva Bhadrapada', 'Uttara Bhadrapada', 'Revati']
     const ganArr = ['manav gan', 'dev gan', 'rakshas gan'];
     const nadiArr = ['Aadi Nadi', 'Madhya Nadi', 'Antya Nadi']

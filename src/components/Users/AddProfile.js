@@ -14,7 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 
 const AddProfile = () => {
-    const rashiArr = ['Makar', 'Dhanu', 'Mesh', 'Vrishabh', 'Mithun', 'Kark', 'Sinh', 'Kannya', 'Tula', 'Vrishchik'];
+    const rashiArr = ['Kumbha', 'Meen', 'Makar', 'Dhanu', 'Mesh', 'Vrishabh', 'Mithun', 'Kark', 'Sinh', 'Kannya', 'Tula', 'Vrishchik'];
     const nakshtraArr = ['Ashwini', 'Bharani', 'Krittika', 'Rohini', 'Mrigashira', 'Ardra', 'Punarvasu', 'Pushya', 'Ashlesha', 'Magha', 'Purva Phalguni', 'Uttara', 'Phalguni', 'Hasta', 'Chitra', 'Swati', 'Vishaka', 'Anurada', 'Jyeshta', 'Mula', 'Purva Ashadha', 'Uttara Ashadha', 'Shravana', 'Dhanishta', 'Shatabhishak', 'Purva Bhadrapada', 'Uttara Bhadrapada', 'Revati']
     const ganArr = ['Manav gan', 'Dev gan', 'Rakshas gan'];
     const nadiArr = ['Aadi Nadi', 'Madhya Nadi', 'Antya Nadi']
