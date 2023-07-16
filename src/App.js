@@ -21,6 +21,7 @@ import Unpaiduser from './components/Unpaiduser';
 import Dashboard from './components/Dashboard'
 import Logout from './components/Auth/Logout';
 import RechargeHistory from './components/Plans/RechargeHistory';
+import UserLogs from "./components/Logs/UserLogs";
 
 function App() {
     // const [loggedin, setLoggedin] = useState(false);
@@ -42,6 +43,7 @@ function App() {
 
                                 {/* Routes for users */}
                                 <Route path="/users" element={<Users />} />
+                                <Route path="/users-log" element={<UserLogs />} />
                                 <Route path="/addprofile" element={<AddProfile />} />
                                 <Route path="/rechargeuser" element={<RechargeUser />} />
                                 <Route path="/updateuser" element={<Updateuser />} />

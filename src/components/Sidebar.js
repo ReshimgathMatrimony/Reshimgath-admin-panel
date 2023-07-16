@@ -22,6 +22,9 @@ const Sidebar = () => {
               <Link to='/users' className='nav-link text-dark  mt-3'>All Users</Link>
             </li>
             <li className='nav-item w-100'>
+              <Link to='/users-log' className='nav-link text-dark  mt-3'>Users Log</Link>
+            </li>
+            <li className='nav-item w-100'>
               <Link to='/rechargedone' className='nav-link text-dark  mt-3'>Recharge History</Link>
             </li>
             <li className='nav-item w-100'>
