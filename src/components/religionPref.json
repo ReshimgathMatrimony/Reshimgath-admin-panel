@@ -1,0 +1,34 @@
+[
+  {
+    "label": "Hindu",
+    "value": "Hindu"
+  },
+  {
+    "label": "Muslim",
+    "value": "Muslim"
+  },
+  {
+    "label": "Christian",
+    "value": "Christian"
+  },
+  {
+    "label": "Parsi",
+    "value": "Parsi"
+  },
+  {
+    "label": "Jain",
+    "value": "Jain"
+  },
+  {
+    "label": "Buddhist",
+    "value": "Buddhist"
+  },
+  {
+    "label": "Jewish",
+    "value": "Jewish"
+  },
+  {
+    "label": "Other",
+    "value": "Other"
+  }
+]
