@@ -1,0 +1,86 @@
+[
+  {
+    "label": "10th",
+    "value": "10th"
+  },
+  {
+    "label": "12th",
+    "value": "12th"
+  },
+  {
+    "label": "B.A.",
+    "value": "B.A"
+  },
+  {
+    "label": "M.A",
+    "value": "M.A"
+  },
+  {
+    "label": "B.com",
+    "value": "B.com"
+  },
+  {
+    "label": "M.com",
+    "value": "M.com"
+  },
+  {
+    "label": "BSC",
+    "value": "BSC"
+  },
+  {
+    "label": "MSC",
+    "value": "MSC"
+  },
+  {
+    "label": "BCA",
+    "value": "BCA"
+  },
+  {
+    "label": "BCS",
+    "value": "BCS"
+  },
+  {
+    "label": "MCA",
+    "value": "MCA"
+  },
+  {
+    "label": "B.E/BTech",
+    "value": "B.E/BTech"
+  },
+  {
+    "label": "M.E/MTech",
+    "value": "M.E/MTech"
+  },
+  {
+    "label": "M.S",
+    "value": "M.S"
+  },
+  {
+    "label": "B Pharma",
+    "value": "B Pharma"
+  },
+  {
+    "label": "M Pharma",
+    "value": "M Pharma"
+  },
+  {
+    "label": "BHMS",
+    "value": "BHMS"
+  },
+  {
+    "label": "MBBS",
+    "value": "MBBS"
+  },
+  {
+    "label": "Dentist",
+    "value": "Dentist"
+  },
+  {
+    "label": "BAMS",
+    "value": "BAMS"
+  },
+  {
+    "label": "Other",
+    "value": "Other"
+  }
+]
